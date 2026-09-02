@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GyanUtsav - Pinnacle Global School</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1b263b">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background-color: #f0f2f5; color: #1c1e21; padding: 16px; display: flex; flex-direction: column; align-items: center; }
+    .container { width: 100%; max-width: 480px; background: #ffffff; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); padding: 18px; }
+    h1 { font-size: 1.5rem; text-align: center; color: #0d1b2a; margin-bottom: 4px; }
+    p.sub { font-size: 0.85rem; text-align: center; color: #555; margin-bottom: 16px; }
+    .form-group { margin-bottom: 12px; }
+    label { display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 4px; color: #333; }
+    input, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; font-size: 0.95rem; }
+    canvas { width: 100%; border-radius: 8px; margin-top: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); display: block; }
+    .btn { display: block; width: 100%; margin-top: 14px; padding: 12px; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; text-align: center; background: #0d1b2a; color: #fff; text-decoration: none; }
+    .btn:active { opacity: 0.9; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>GyanUtsav</h1>
+  <p class="sub">Pinnacle Global School Poster Maker</p>
+
+  <div class="form-group">
+    <label for="festival">Select Festival / Occasion</label>
+    <select id="festival">
+      <option value="diwali">Happy Diwali</option>
+      <option value="holi">Happy Holi</option>
+      <option value="independence">Happy Independence Day</option>
+      <option value="republic">Happy Republic Day</option>
+      <option value="teachers">Happy Teachers' Day</option>
+      <option value="childrens">Happy Children's Day</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="userName">Your Name</label>
+    <input type="text" id="userName" placeholder="e.g., Aryan Sharma (Class X)">
+  </div>
+
+  <div class="form-group">
+    <label for="userContact">Contact / Designation (Optional)</label>
+    <input type="text" id="userContact" placeholder="e.g., +91 98765 43210 or Proud Parent">
+  </div>
+
+  <canvas id="posterCanvas" width="1080" height="1350"></canvas>
+
+  <button class="btn" id="downloadBtn">Download Poster</button>
+</div>
+
+<script>
+  const canvas = document.getElementById('posterCanvas');
+  const ctx = canvas.getContext('2d');
+
+  const festivalSelect = document.getElementById('festival');
+  const nameInput = document.getElementById('userName');
+  const contactInput = document.getElementById('userContact');
+  const downloadBtn = document.getElementById('downloadBtn');
+
+  // Replace with your school logo URL (PNG with transparent background works best)
+  const schoolLogo = new Image();
+  schoolLogo.crossOrigin = 'anonymous';
+  schoolLogo.src = 'https://cdn-icons-png.flaticon.com/512/2997/2997295.png';
+
+  const themes = {
+    diwali: { bg: '#2b0938', accent: '#ffd700', text: 'Happy Diwali', quote: 'May the festival of lights brighten your life with joy and success!' },
+    holi: { bg: '#8338ec', accent: '#ffbe0b', text: 'Happy Holi', quote: 'Wishing you a vibrant season filled with joyful colors and happiness!' },
+    independence: { bg: '#0b3c5d', accent: '#ff9933', text: 'Happy Independence Day', quote: 'Saluting the nation and celebrating our proud heritage.' },
+    republic: { bg: '#1d2731', accent: '#198754', text: 'Happy Republic Day', quote: 'Celebrating unity, justice, and the spirit of a sovereign India.' },
+    teachers: { bg: '#1b263b', accent: '#64dfdf', text: "Happy Teachers' Day", quote: 'Honoring the mentors who guide our journey toward excellence.' },
+    childrens: { bg: '#005f73', accent: '#94d2bd', text: "Happy Children's Day", quote: 'Nurturing curiosity, imagination, and bright futures.' }
+  };
+
+  function drawPoster() {
+    const theme = themes[festivalSelect.value];
+    const name = nameInput.value.trim();
+    const contact = contactInput.value.trim();
+
+    // 1. Background Gradient
+    const grad = ctx.createLinearGradient(0, 0, 0, canvas.height);
+    grad.addColorStop(0, theme.bg);
+    grad.addColorStop(1, '#05070a');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Decorative Gold Inner Border
+    ctx.strokeStyle = theme.accent;
+    ctx.lineWidth = 8;
+    ctx.strokeRect(36, 36, canvas.width - 72, canvas.height - 72);
+
+    // 2. School Header (Fixed Branding)
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 44px -apple-system, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('PINNACLE GLOBAL SCHOOL', canvas.width / 2, 170);
+
+    ctx.fillStyle = theme.accent;
+    ctx.font = '500 24px -apple-system, sans-serif';
+    ctx.fillText('Empowering Minds | Inspiring Futures', canvas.width / 2, 210);
+
+    // School Logo if loaded
+    if (schoolLogo.complete && schoolLogo.naturalWidth !== 0) {
+      ctx.drawImage(schoolLogo, (canvas.width / 2) - 40, 70, 80, 80);
+    }
+
+    // Divider Line
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(120, 240);
+    ctx.lineTo(canvas.width - 120, 240);
+    ctx.stroke();
+
+    // 3. Central Festival Message
+    ctx.fillStyle = theme.accent;
+    ctx.font = 'bold 84px -apple-system, sans-serif';
+    ctx.fillText(theme.text, canvas.width / 2, 620);
+
+    ctx.fillStyle = '#eaeaea';
+    ctx.font = '34px -apple-system, sans-serif';
+    wrapText(ctx, theme.quote, canvas.width / 2, 720, 800, 50);
+
+    // 4. Personalized Footer Card
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.08)';
+    ctx.roundRect(80, 1080, canvas.width - 160, 170, 24);
+    ctx.fill();
+
+    ctx.fillStyle = '#dcdcdc';
+    ctx.font = '26px -apple-system, sans-serif';
+    ctx.fillText('Warm Wishes From:', canvas.width / 2, 1125);
+
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 46px -apple-system, sans-serif';
+    ctx.fillText(name || 'Proud Member of PGS Family', canvas.width / 2, 1180);
+
+    if (contact) {
+      ctx.fillStyle = theme.accent;
+      ctx.font = '28px -apple-system, sans-serif';
+      ctx.fillText(contact, canvas.width / 2, 1225);
+    }
+  }
+
+  function wrapText(context, text, x, y, maxWidth, lineHeight) {
+    const words = text.split(' ');
+    let line = '';
+    for (let n = 0; n < words.length; n++) {
+      const testLine = line + words[n] + ' ';
+      const metrics = context.measureText(testLine);
+      if (metrics.width > maxWidth && n > 0) {
+        context.fillText(line, x, y);
+        line = words[n] + ' ';
+        y += lineHeight;
+      } else {
+        line = testLine;
+      }
+    }
+    context.fillText(line, x, y);
+  }
+
+  // Event Listeners
+  [festivalSelect, nameInput, contactInput].forEach(el => {
+    el.addEventListener('input', drawPoster);
+  });
+  schoolLogo.onload = drawPoster;
+
+  downloadBtn.addEventListener('click', () => {
+    const link = document.createElement('a');
+    link.download = `Pinnacle_${festivalSelect.value}_poster.png`;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  });
+
+  // Initial draw
+  drawPoster();
+</script>
+</body>
+</html>
