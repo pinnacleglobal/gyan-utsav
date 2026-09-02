@@ -8,28 +8,27 @@
   <link rel="manifest" href="manifest.json">
   <title>GyanUtsav — Pinnacle Creative Studio</title>
   
-  <!-- Premium Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
       --navy: #071d49;
-      --navy-dark: #040f26;
+      --navy-dark: #030d22;
       --gold: #f3b51b;
       --gold-light: #ffd76a;
-      --ink: #111827;
+      --ink: #0f172a;
       --muted: #64748b;
       --line: #e2e8f0;
       --card: #ffffff;
       --bg: #f8fafc;
-      --shadow-sm: 0 4px 12px rgba(7, 29, 73, 0.05);
+      --shadow-sm: 0 4px 12px rgba(7, 29, 73, 0.06);
       --shadow-lg: 0 20px 45px rgba(7, 29, 73, 0.12);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { min-height: 100%; font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--ink); }
+    html, body { min-height: 100%; font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; background: var(--bg); color: var(--ink); }
     body { padding-bottom: env(safe-area-inset-bottom); }
     button, input { font: inherit; outline: none; }
     button { cursor: pointer; }
@@ -37,22 +36,22 @@
 
     /* TOPBAR */
     .topbar {
-      min-height: 74px;
+      min-height: 76px;
       padding: 10px max(20px, calc((100vw - 1180px) / 2));
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: rgba(255, 255, 255, 0.94);
+      background: rgba(255, 255, 255, 0.95);
       border-bottom: 1px solid var(--line);
       position: sticky;
       top: 0;
       z-index: 50;
       backdrop-filter: blur(14px);
     }
-    .brand { display: flex; align-items: center; gap: 12px; }
-    .brand img { width: 48px; height: 48px; object-fit: contain; }
-    .brand-name { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.15rem; color: var(--navy); letter-spacing: -0.02em; }
-    .brand-subtitle { font-size: 0.75rem; color: var(--muted); font-weight: 500; margin-top: 1px; }
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .brand img { width: 52px; height: 52px; object-fit: contain; }
+    .brand-name { font-weight: 800; font-size: 1.25rem; color: var(--navy); letter-spacing: -0.02em; }
+    .brand-subtitle { font-size: 0.75rem; color: var(--muted); font-weight: 600; margin-top: 1px; }
 
     .install-btn {
       background: linear-gradient(135deg, var(--navy), #0d2c68);
@@ -65,7 +64,7 @@
       box-shadow: 0 4px 14px rgba(7, 29, 73, 0.2);
       transition: all 0.2s ease;
     }
-    .install-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(7, 29, 73, 0.28); }
+    .install-btn:hover { transform: translateY(-1px); }
 
     /* HERO */
     .container { width: min(1180px, calc(100% - 32px)); margin: 0 auto; padding: 24px 0 60px; }
@@ -73,7 +72,7 @@
     .hero {
       position: relative;
       overflow: hidden;
-      background: radial-gradient(circle at 88% 18%, rgba(243, 181, 27, 0.28), transparent 36%),
+      background: radial-gradient(circle at 88% 18%, rgba(243, 181, 27, 0.25), transparent 36%),
                   linear-gradient(135deg, #051433 0%, #0c2b69 60%, #163f91 100%);
       color: #ffffff;
       border-radius: 28px;
@@ -93,35 +92,35 @@
       pointer-events: none;
     }
     .eyebrow { display: inline-block; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); }
-    .hero h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.05; letter-spacing: -0.04em; margin: 12px 0 16px; font-weight: 800; }
+    .hero h1 { font-size: clamp(2.1rem, 5vw, 3.5rem); line-height: 1.05; letter-spacing: -0.04em; margin: 12px 0 16px; font-weight: 800; }
     .hero h1 span { color: var(--gold-light); }
-    .hero p { max-width: 620px; color: rgba(255,255,255,0.85); font-size: 0.98rem; line-height: 1.6; }
+    .hero p { max-width: 620px; color: rgba(255,255,255,0.85); font-size: 1rem; line-height: 1.6; }
 
     /* TEMPLATE GALLERY */
     .section-head { margin: 40px 0 20px; }
-    .section-head h2 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.5rem; font-weight: 800; letter-spacing: -0.02em; color: var(--navy); }
-    .section-head p { color: var(--muted); margin-top: 4px; font-size: 0.9rem; }
+    .section-head h2 { font-size: 1.55rem; font-weight: 800; letter-spacing: -0.02em; color: var(--navy); }
+    .section-head p { color: var(--muted); margin-top: 4px; font-size: 0.92rem; }
 
-    .template-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+    .template-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
     .template-card {
       border: 1px solid var(--line);
       background: var(--card);
-      border-radius: 20px;
+      border-radius: 22px;
       padding: 12px;
       text-align: left;
       box-shadow: var(--shadow-sm);
       cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
     }
-    .template-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: #cbd5e1; }
-    .template-thumb { aspect-ratio: 4 / 5; border-radius: 14px; overflow: hidden; position: relative; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.15); }
-    .template-thumb-inner { position: absolute; inset: 0; padding: 18px 14px; display: flex; flex-direction: column; justify-content: space-between; align-items: center; color: white; text-align: center; }
-    .template-logo-preview { width: 56px; height: 56px; object-fit: contain; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4)); }
-    .thumb-title { font-family: 'Cinzel', serif; font-size: 1.25rem; font-weight: 800; letter-spacing: 0.05em; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
-    .thumb-badge { font-size: 0.72rem; font-weight: 700; background: rgba(0,0,0,0.3); padding: 4px 12px; border-radius: 999px; backdrop-filter: blur(4px); }
-    .template-info { padding: 12px 6px 4px; }
-    .template-info strong { display: block; font-size: 1rem; color: var(--ink); }
-    .template-info span { display: block; margin-top: 2px; color: var(--muted); font-size: 0.78rem; font-weight: 500; }
+    .template-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-color: #cbd5e1; }
+    .template-thumb { aspect-ratio: 4 / 5; border-radius: 16px; overflow: hidden; position: relative; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.15); }
+    .template-thumb-inner { position: absolute; inset: 0; padding: 22px 16px; display: flex; flex-direction: column; justify-content: space-between; align-items: center; color: white; text-align: center; }
+    .template-logo-preview { width: 90px; height: 90px; object-fit: contain; filter: drop-shadow(0 6px 12px rgba(0,0,0,0.5)); }
+    .thumb-title { font-family: 'Cinzel', serif; font-size: 1.35rem; font-weight: 800; letter-spacing: 0.05em; text-shadow: 0 3px 12px rgba(0,0,0,0.6); }
+    .thumb-badge { font-size: 0.72rem; font-weight: 700; background: rgba(0,0,0,0.4); padding: 5px 14px; border-radius: 999px; backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,0.15); }
+    .template-info { padding: 14px 6px 4px; }
+    .template-info strong { display: block; font-size: 1.05rem; color: var(--ink); }
+    .template-info span { display: block; margin-top: 3px; color: var(--muted); font-size: 0.8rem; font-weight: 600; }
 
     /* EDITOR VIEW */
     .back-btn { background: none; border: none; color: var(--navy); font-weight: 700; font-size: 0.95rem; margin-bottom: 20px; display: inline-flex; align-items: center; gap: 6px; }
@@ -129,31 +128,30 @@
     .preview-card, .form-card { background: #fff; border: 1px solid var(--line); border-radius: 24px; box-shadow: var(--shadow-sm); }
     .preview-card { padding: 22px; }
     .preview-head { margin-bottom: 16px; }
-    .preview-head h2 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.25rem; font-weight: 800; color: var(--navy); }
+    .preview-head h2 { font-size: 1.3rem; font-weight: 800; color: var(--navy); }
 
-    .canvas-wrap { width: 100%; max-width: 540px; margin: 0 auto; background: #0b1329; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+    .canvas-wrap { width: 100%; max-width: 540px; margin: 0 auto; background: #060a14; border-radius: 16px; overflow: hidden; box-shadow: 0 12px 36px rgba(0,0,0,0.2); }
     canvas { width: 100%; height: auto; display: block; }
 
     .form-card { padding: 28px; position: sticky; top: 96px; }
-    .form-heading h2 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.3rem; font-weight: 800; color: var(--navy); margin-top: 2px; }
-    .form-heading p { font-size: 0.8rem; color: var(--muted); margin-top: 4px; line-height: 1.5; }
+    .form-heading h2 { font-size: 1.35rem; font-weight: 800; color: var(--navy); margin-top: 2px; }
+    .form-heading p { font-size: 0.82rem; color: var(--muted); margin-top: 4px; line-height: 1.5; }
     
-    label { display: block; margin-top: 16px; font-size: 0.78rem; font-weight: 700; color: #334155; }
-    label .optional { font-weight: 400; color: var(--muted); }
-    input { width: 100%; margin-top: 6px; border: 1px solid #cbd5e1; background: #f8fafc; color: var(--ink); padding: 12px 14px; border-radius: 12px; font-size: 0.9rem; transition: border-color 0.15s, box-shadow 0.15s; }
+    label { display: block; margin-top: 18px; font-size: 0.8rem; font-weight: 700; color: #334155; }
+    label .optional { font-weight: 500; color: var(--muted); }
+    input { width: 100%; margin-top: 6px; border: 1px solid #cbd5e1; background: #f8fafc; color: var(--ink); padding: 13px 15px; border-radius: 12px; font-size: 0.92rem; font-weight: 500; transition: all 0.15s ease; }
     input:focus { border-color: #2563eb; background: #ffffff; box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1); }
 
-    .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 24px; }
-    .btn-action { border: 0; padding: 14px; border-radius: 12px; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; gap: 6px; }
+    .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 26px; }
+    .btn-action { border: 0; padding: 14px; border-radius: 12px; font-weight: 700; font-size: 0.92rem; display: flex; align-items: center; justify-content: center; gap: 6px; }
     .btn-action.primary { background: linear-gradient(135deg, var(--navy), #0d2c68); color: white; box-shadow: 0 4px 14px rgba(7, 29, 73, 0.2); }
     .btn-action.secondary { background: #e2e8f0; color: var(--navy); }
-    .btn-action:hover { opacity: 0.95; }
-    .text-btn { display: block; width: 100%; margin-top: 16px; background: none; border: 0; color: var(--muted); font-size: 0.8rem; font-weight: 600; text-align: center; }
+    .text-btn { display: block; width: 100%; margin-top: 18px; background: none; border: 0; color: var(--muted); font-size: 0.82rem; font-weight: 700; text-align: center; }
 
-    footer { text-align: center; padding: 40px 16px; color: var(--navy); font-weight: 700; font-size: 0.85rem; }
-    footer .subtext { color: var(--muted); font-weight: 400; font-size: 0.75rem; margin-top: 4px; }
+    footer { text-align: center; padding: 40px 16px; color: var(--navy); font-weight: 800; font-size: 0.85rem; }
+    footer .subtext { color: var(--muted); font-weight: 500; font-size: 0.75rem; margin-top: 4px; }
 
-    .toast { position: fixed; left: 50%; bottom: 28px; transform: translate(-50%, 40px); background: #0f172a; color: white; padding: 12px 22px; border-radius: 999px; font-size: 0.85rem; font-weight: 600; opacity: 0; pointer-events: none; transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1); z-index: 100; box-shadow: 0 10px 25px rgba(0,0,0,0.25); }
+    .toast { position: fixed; left: 50%; bottom: 28px; transform: translate(-50%, 40px); background: #0f172a; color: white; padding: 12px 22px; border-radius: 999px; font-size: 0.85rem; font-weight: 600; opacity: 0; pointer-events: none; transition: all 0.25s ease; z-index: 100; box-shadow: 0 10px 25px rgba(0,0,0,0.25); }
     .toast.show { opacity: 1; transform: translate(-50%, 0); }
 
     @media (max-width: 860px) {
@@ -183,7 +181,6 @@
   </header>
 
   <main class="container">
-    <!-- HOME SCREEN -->
     <section id="homeView">
       <div class="hero">
         <span class="eyebrow">PINNACLE GLOBAL SCHOOL</span>
@@ -199,7 +196,6 @@
       <div id="templateGrid" class="template-grid"></div>
     </section>
 
-    <!-- POSTER EDITOR SCREEN -->
     <section id="editorView" class="hidden">
       <button id="backBtn" class="back-btn" type="button">← Back to designs</button>
 
@@ -229,17 +225,17 @@
 
           <label>
             Designation / Class
-            <input id="classInput" maxlength="32" placeholder="e.g. Class X-A / Teacher / Proud Parent">
+            <input id="classInput" maxlength="34" placeholder="e.g. Class X-A / Teacher / Proud Parent">
           </label>
 
           <label>
             Festival Message
-            <input id="messageInput" maxlength="90" placeholder="Custom festive wish">
+            <input id="messageInput" maxlength="95" placeholder="Custom festive wish">
           </label>
 
           <label>
             Phone Number <span class="optional">(optional)</span>
-            <input id="phoneInput" inputmode="tel" maxlength="15" placeholder="e.g. +91 98765 43210">
+            <input id="phoneInput" inputmode="tel" maxlength="16" placeholder="e.g. +91 98765 43210">
           </label>
 
           <div class="actions">
@@ -261,7 +257,6 @@
   <div id="toast" class="toast"></div>
 
   <script>
-    // Logo in main/root folder
     const LOGO_SRC = "logo.png";
 
     const templates = [
@@ -269,8 +264,8 @@
         id: "diwali",
         name: "Deepawali",
         category: "Festival of Lights",
-        message: "May the divine light of Diwali bring peace, prosperity, and endless joy to you and your family.",
-        bg: ["#2d053d", "#080112"],
+        message: "May the divine light of Diwali bring peace, prosperity, and endless joy to you and your loved ones.",
+        bg: ["#2d0738", "#080112"],
         accent: "#f5ba31",
         accent2: "#ff4500",
         headline: "HAPPY DIWALI",
@@ -278,10 +273,10 @@
       },
       {
         id: "holi",
-        name: "Holi Celebration",
+        name: "Holi Festival",
         category: "Festival of Colours",
-        message: "May your life be painted with radiant colours of laughter, friendship, and eternal bliss.",
-        bg: ["#3b074a", "#0d0219"],
+        message: "Wishing you a life painted with radiant joy, vibrant health, and unforgettable moments.",
+        bg: ["#3d084d", "#0e021c"],
         accent: "#ff007f",
         accent2: "#00f2fe",
         headline: "HAPPY HOLI",
@@ -292,7 +287,7 @@
         name: "Independence Day",
         category: "National Day",
         message: "Saluting the valor, sacrifice, and glorious heritage of our great nation. Proud to be Indian!",
-        bg: ["#02231c", "#020f17"],
+        bg: ["#02231b", "#020f17"],
         accent: "#ff9933",
         accent2: "#138808",
         headline: "INDEPENDENCE DAY",
@@ -302,18 +297,18 @@
         id: "republic",
         name: "Republic Day",
         category: "National Day",
-        message: "Celebrating justice, liberty, and democratic unity across the motherland. Jai Hind!",
+        message: "Celebrating justice, liberty, equality, and democratic unity across our motherland. Jai Hind!",
         bg: ["#081d3a", "#020914"],
         accent: "#ff9933",
         accent2: "#2ecc71",
-        headline: "HAPPY REPUBLIC DAY",
+        headline: "REPUBLIC DAY",
         type: "patriotic"
       },
       {
         id: "teachers",
         name: "Teachers' Day",
-        category: "School Observance",
-        message: "In deep gratitude to the noble mentors who ignite minds, inspire character, and shape tomorrow.",
+        category: "PGS Observance",
+        message: "In deep reverence to the noble mentors who ignite minds, inspire character, and shape tomorrow.",
         bg: ["#141f36", "#060a12"],
         accent: "#ffd15c",
         accent2: "#38bdf8",
@@ -324,7 +319,7 @@
         id: "newyear",
         name: "New Year Celebration",
         category: "Annual Milestone",
-        message: "Wishing you 365 days of grand success, boundless health, and thrilling new opportunities.",
+        message: "Welcoming 365 new days filled with grand success, boundless health, and thrilling achievements.",
         bg: ["#0a192f", "#020c1b"],
         accent: "#00f2fe",
         accent2: "#ffd700",
@@ -357,10 +352,11 @@
         img.crossOrigin = "anonymous";
         img.onload = () => { state.logo = img; resolve(img); };
         img.onerror = () => {
-          // Fallback to online logo if local logo.png is missing
-          img.src = "https://cdn-icons-png.flaticon.com/512/2997/2997295.png";
-          img.onload = () => { state.logo = img; resolve(img); };
-          img.onerror = () => resolve(null);
+          const fallback = new Image();
+          fallback.crossOrigin = "anonymous";
+          fallback.src = "https://cdn-icons-png.flaticon.com/512/2997/2997295.png";
+          fallback.onload = () => { state.logo = fallback; resolve(fallback); };
+          fallback.onerror = () => resolve(null);
         };
         img.src = LOGO_SRC;
       });
@@ -407,54 +403,64 @@
       showToast.timer = setTimeout(() => toast.classList.remove("show"), 2500);
     }
 
-    /* ARTWORK AND VISUAL THEMES */
+    // --- PRO ARTWORK ENGINE ---
     function drawArtwork(type, accent, accent2) {
       ctx.save();
+      const cx = 540;
+      const cy = 720;
+
       if (type === "diwali") {
-        // Glowing aura
-        const glow = ctx.createRadialGradient(540, 680, 20, 540, 680, 260);
+        // 1. Radiant Ambient Glow
+        const glow = ctx.createRadialGradient(cx, cy - 20, 20, cx, cy - 20, 320);
         glow.addColorStop(0, "rgba(255, 200, 50, 0.45)");
-        glow.addColorStop(0.5, "rgba(255, 120, 0, 0.2)");
+        glow.addColorStop(0.5, "rgba(255, 100, 0, 0.15)");
         glow.addColorStop(1, "rgba(0, 0, 0, 0)");
         ctx.fillStyle = glow;
         ctx.beginPath();
-        ctx.arc(540, 680, 260, 0, Math.PI * 2);
+        ctx.arc(cx, cy - 20, 320, 0, Math.PI * 2);
         ctx.fill();
 
-        // Diya Base (Golden Brass)
-        const diyaGrad = ctx.createLinearGradient(420, 690, 660, 750);
-        diyaGrad.addColorStop(0, "#ffe066");
-        diyaGrad.addColorStop(0.5, "#d4af37");
-        diyaGrad.addColorStop(1, "#996515");
+        // 2. Heavy Brass Diya Body
+        const diyaGrad = ctx.createLinearGradient(cx - 150, cy + 20, cx + 150, cy + 100);
+        diyaGrad.addColorStop(0, "#ffe57f");
+        diyaGrad.addColorStop(0.4, "#d4af37");
+        diyaGrad.addColorStop(0.8, "#aa7c11");
+        diyaGrad.addColorStop(1, "#5b3e02");
         ctx.fillStyle = diyaGrad;
         ctx.beginPath();
-        ctx.moveTo(420, 690);
-        ctx.quadraticCurveTo(540, 770, 660, 690);
-        ctx.quadraticCurveTo(540, 720, 420, 690);
+        ctx.moveTo(cx - 140, cy);
+        ctx.quadraticCurveTo(cx, cy + 130, cx + 140, cy);
+        ctx.quadraticCurveTo(cx, cy + 40, cx - 140, cy);
         ctx.fill();
 
-        // Diya Rim
+        // Diya Ornate Rim
         ctx.strokeStyle = "#fff2a8";
-        ctx.lineWidth = 4;
+        ctx.lineWidth = 5;
         ctx.stroke();
 
-        // Flame Outer
-        const flameGrad = ctx.createLinearGradient(540, 570, 540, 690);
+        // 3. Sacred Teardrop Flame
+        const flameGrad = ctx.createLinearGradient(cx, cy - 170, cx, cy);
         flameGrad.addColorStop(0, "#ffffff");
-        flameGrad.addColorStop(0.25, "#ffe600");
-        flameGrad.addColorStop(0.7, "#ff5500");
-        flameGrad.addColorStop(1, "rgba(255,0,0,0)");
+        flameGrad.addColorStop(0.2, "#fff275");
+        flameGrad.addColorStop(0.65, "#ff5500");
+        flameGrad.addColorStop(1, "rgba(255, 20, 0, 0)");
         ctx.fillStyle = flameGrad;
         ctx.beginPath();
-        ctx.moveTo(540, 570);
-        ctx.bezierCurveTo(570, 630, 565, 685, 540, 690);
-        ctx.bezierCurveTo(515, 685, 510, 630, 540, 570);
+        ctx.moveTo(cx, cy - 170);
+        ctx.bezierCurveTo(cx + 65, cy - 80, cx + 55, cy - 5, cx, cy);
+        ctx.bezierCurveTo(cx - 55, cy - 5, cx - 65, cy - 80, cx, cy - 170);
         ctx.fill();
 
-        // Floating Golden Sparkles
-        for (let i = 0; i < 40; i++) {
-          const sx = (i * 123) % 920 + 80;
-          const sy = (i * 97) % 460 + 440;
+        // Inner White Core
+        ctx.fillStyle = "#ffffff";
+        ctx.beginPath();
+        ctx.ellipse(cx, cy - 50, 16, 38, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        // 4. Rising Golden Embers
+        for (let i = 0; i < 48; i++) {
+          const sx = (i * 131) % 940 + 70;
+          const sy = (i * 87) % 480 + 440;
           ctx.fillStyle = accent;
           ctx.globalAlpha = (i % 2 === 0) ? 0.8 : 0.35;
           ctx.beginPath();
@@ -462,73 +468,72 @@
           ctx.fill();
         }
       } else if (type === "holi") {
-        // Multi-colored Gulal Splashes
-        const colors = [accent, accent2, "#f43f5e", "#10b981", "#fbbf24"];
-        for (let s = 0; s < 18; s++) {
-          const cx = (s * 179) % 860 + 110;
-          const cy = (s * 113) % 420 + 460;
-          const rad = (s % 4 + 2) * 14;
+        // Multi-layered Color Gulal Splashes
+        const colors = [accent, accent2, "#f43f5e", "#10b981", "#fbbf24", "#a855f7"];
+        for (let s = 0; s < 22; s++) {
+          const sx = (s * 183) % 860 + 110;
+          const sy = (s * 117) % 420 + 480;
+          const rad = (s % 5 + 3) * 18;
           const col = colors[s % colors.length];
-          const grad = ctx.createRadialGradient(cx, cy, 2, cx, cy, rad);
+          const grad = ctx.createRadialGradient(sx, sy, 4, sx, sy, rad);
           grad.addColorStop(0, col);
           grad.addColorStop(1, "transparent");
           ctx.fillStyle = grad;
           ctx.globalAlpha = 0.55;
           ctx.beginPath();
-          ctx.arc(cx, cy, rad, 0, Math.PI * 2);
+          ctx.arc(sx, sy, rad, 0, Math.PI * 2);
           ctx.fill();
         }
       } else if (type === "patriotic") {
-        // Indian Tiranga Elegant Radiance
+        // Concentric Ashoka Chakra & Patriotic Aura
         const rays = 24;
-        ctx.strokeStyle = "rgba(255, 255, 255, 0.1)";
-        ctx.lineWidth = 2;
+        ctx.strokeStyle = "rgba(255, 255, 255, 0.12)";
+        ctx.lineWidth = 2.5;
         for (let i = 0; i < rays; i++) {
           const angle = (i * 15 * Math.PI) / 180;
           ctx.beginPath();
-          ctx.moveTo(540, 660);
-          ctx.lineTo(540 + Math.cos(angle) * 130, 660 + Math.sin(angle) * 130);
+          ctx.moveTo(cx, cy);
+          ctx.lineTo(cx + Math.cos(angle) * 160, cy + Math.sin(angle) * 160);
           ctx.stroke();
         }
-        // Concentric Chakra Ring
-        ctx.strokeStyle = "#4da6ff";
-        ctx.lineWidth = 3;
+        ctx.strokeStyle = "#38bdf8";
+        ctx.lineWidth = 4;
         ctx.beginPath();
-        ctx.arc(540, 660, 60, 0, Math.PI * 2);
+        ctx.arc(cx, cy, 75, 0, Math.PI * 2);
         ctx.stroke();
       } else {
-        // Starfield / Bokeh for celebration & teachers
+        // Celebration & Academic Starfield
         for (let i = 0; i < 50; i++) {
-          const bx = (i * 163) % 940 + 70;
-          const by = (i * 89) % 500 + 420;
+          const bx = (i * 167) % 940 + 70;
+          const by = (i * 91) % 480 + 450;
           ctx.fillStyle = accent;
           ctx.globalAlpha = (i % 2 === 0) ? 0.75 : 0.25;
           ctx.beginPath();
-          ctx.arc(bx, by, (i % 4 === 0) ? 4 : 2, 0, Math.PI * 2);
+          ctx.arc(bx, by, (i % 4 === 0) ? 4.5 : 2, 0, Math.PI * 2);
           ctx.fill();
         }
       }
       ctx.restore();
     }
 
-    function drawBorders(accent) {
+    function drawFiligreeBorders(accent) {
       ctx.save();
-      // Outer Frame
+      // Outer Gold Frame
       ctx.strokeStyle = accent;
-      ctx.lineWidth = 5;
-      ctx.strokeRect(36, 36, 1008, 1278);
+      ctx.lineWidth = 6;
+      ctx.strokeRect(34, 34, 1012, 1282);
 
-      // Inner Frame
-      ctx.strokeStyle = "rgba(255, 255, 255, 0.2)";
-      ctx.lineWidth = 1.5;
+      // Inner Delicate Line
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.22)";
+      ctx.lineWidth = 1.8;
       ctx.strokeRect(46, 46, 988, 1258);
 
-      // Corner Jewels
-      const corners = [[36, 36], [1044, 36], [36, 1314], [1044, 1314]];
+      // Corner Medallions
+      const corners = [[34, 34], [1046, 34], [34, 1316], [1046, 1316]];
       corners.forEach(([cx, cy]) => {
         ctx.fillStyle = accent;
         ctx.beginPath();
-        ctx.arc(cx, cy, 7, 0, Math.PI * 2);
+        ctx.arc(cx, cy, 9, 0, Math.PI * 2);
         ctx.fill();
       });
       ctx.restore();
@@ -536,90 +541,115 @@
 
     function drawPoster() {
       const t = state.template;
-      const name = nameInput.value.trim() || "Your Name";
+      const name = nameInput.value.trim() || "Aarav Sharma";
       const classText = classInput.value.trim();
       const message = messageInput.value.trim() || t.message;
       const phone = phoneInput.value.trim();
 
-      // 1. Rich Canvas Background
-      const grad = ctx.createRadialGradient(540, 420, 80, 540, 675, 800);
+      // 1. Deep Canvas Studio Gradient
+      const grad = ctx.createRadialGradient(540, 420, 80, 540, 675, 820);
       grad.addColorStop(0, t.bg[0]);
       grad.addColorStop(1, t.bg[1]);
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, 1080, 1350);
 
-      // 2. Borders and Background Festive Graphics
-      drawBorders(t.accent);
+      // 2. Borders & Graphics
+      drawFiligreeBorders(t.accent);
       drawArtwork(t.type, t.accent, t.accent2);
 
-      // 3. School Logo (Top Center)
-      if (state.logo && state.logo.naturalWidth !== 0) {
-        const logoH = 140;
-        const ratio = state.logo.naturalWidth / state.logo.naturalHeight;
+      // 3. Logo (Expanded to 2.5X scale, centered with golden backing)
+      if (state.logo) {
+        const logoH = 240; // 2.5x larger than original
+        const ratio = (state.logo.naturalWidth || state.logo.width) / (state.logo.naturalHeight || state.logo.height);
         const logoW = logoH * ratio;
+        const logoX = (1080 - logoW) / 2;
+        const logoY = 68;
+
+        // Elegant backlight glow behind logo
+        const logoGlow = ctx.createRadialGradient(540, logoY + 120, 20, 540, logoY + 120, 160);
+        logoGlow.addColorStop(0, "rgba(255, 255, 255, 0.28)");
+        logoGlow.addColorStop(1, "rgba(255, 255, 255, 0)");
+        ctx.fillStyle = logoGlow;
+        ctx.beginPath();
+        ctx.arc(540, logoY + 120, 160, 0, Math.PI * 2);
+        ctx.fill();
+
         ctx.save();
-        ctx.shadowColor = "rgba(0,0,0,0.6)";
-        ctx.shadowBlur = 18;
-        ctx.drawImage(state.logo, (1080 - logoW) / 2, 80, logoW, logoH);
+        ctx.shadowColor = "rgba(0,0,0,0.65)";
+        ctx.shadowBlur = 24;
+        ctx.drawImage(state.logo, logoX, logoY, logoW, logoH);
         ctx.restore();
       }
 
-      // 4. Festival Headline
+      // 4. Headline
       ctx.textAlign = "center";
       ctx.fillStyle = t.accent;
-      ctx.font = "900 68px 'Cinzel', serif";
-      ctx.shadowColor = "rgba(0,0,0,0.7)";
-      ctx.shadowBlur = 20;
-      ctx.fillText(t.headline, 540, 480);
+      ctx.font = "900 70px 'Cinzel', serif";
+      ctx.shadowColor = "rgba(0,0,0,0.75)";
+      ctx.shadowBlur = 22;
+      ctx.fillText(t.headline, 540, 410);
       ctx.shadowBlur = 0;
 
-      // Decorative Accent Underline
+      // Gold Ornamental Divider
       ctx.fillStyle = t.accent;
-      roundRect(ctx, 420, 508, 240, 5, 3, true, false);
+      roundRect(ctx, 420, 436, 240, 5, 3, true, false);
 
-      // 5. Festival Greeting Message
+      // 5. Festive Greeting Message
       ctx.fillStyle = "rgba(255, 255, 255, 0.95)";
-      ctx.font = "500 32px 'Inter', sans-serif";
-      wrapText(ctx, message, 540, 800, 820, 48);
+      ctx.font = "500 32px 'Plus Jakarta Sans', sans-serif";
+      wrapText(ctx, message, 540, 890, 840, 48);
 
-      // 6. User Personalization Plate (Positioned at the very bottom)
-      const plateH = phone ? 190 : 165;
-      const plateY = 1314 - plateH - 24; // pinned to bottom above margin
+      // 6. User Personalization Plinth (Bottom-pinned)
+      const hasExtras = Boolean(classText || phone);
+      const plateH = hasExtras ? 210 : 160;
+      const plateY = 1316 - plateH - 30;
 
       ctx.fillStyle = "rgba(255, 255, 255, 0.08)";
       ctx.strokeStyle = "rgba(255, 255, 255, 0.22)";
       ctx.lineWidth = 2;
-      roundRect(ctx, 80, plateY, 920, plateH, 24, true, true);
+      roundRect(ctx, 80, plateY, 920, plateH, 26, true, true);
 
       // "Warm Wishes From"
       ctx.fillStyle = t.accent;
-      ctx.font = "800 18px 'Inter', sans-serif";
-      ctx.letterSpacing = "3px";
+      ctx.font = "800 18px 'Plus Jakarta Sans', sans-serif";
+      ctx.letterSpacing = "4px";
       ctx.fillText("WARM WISHES FROM", 540, plateY + 44);
+      ctx.letterSpacing = "0px";
 
-      // User's Name
+      // Dynamic font size for user name so it never clips
+      const nameFontSize = fitText(ctx, name, 820, 48, 800, "'Plus Jakarta Sans', sans-serif");
       ctx.fillStyle = "#ffffff";
-      ctx.font = "800 48px 'Plus Jakarta Sans', sans-serif";
-      ctx.shadowColor = "rgba(0,0,0,0.4)";
-      ctx.shadowBlur = 10;
-      ctx.fillText(name, 540, plateY + 98);
+      ctx.font = `800 ${nameFontSize}px 'Plus Jakarta Sans', sans-serif`;
+      ctx.shadowColor = "rgba(0,0,0,0.5)";
+      ctx.shadowBlur = 12;
+      ctx.fillText(name, 540, plateY + 102);
       ctx.shadowBlur = 0;
 
-      // Class / Designation & Phone
-      let subY = plateY + 138;
+      // Class / Designation & Phone Line
+      const subY = plateY + 154;
       if (classText && phone) {
-        ctx.fillStyle = "rgba(255, 255, 255, 0.88)";
-        ctx.font = "600 22px 'Inter', sans-serif";
-        ctx.fillText(`${classText}  •  ${phone}`, 540, subY);
+        ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
+        ctx.font = "600 23px 'Inter', sans-serif";
+        ctx.fillText(`${classText}   •   ${phone}`, 540, subY);
       } else if (classText) {
-        ctx.fillStyle = "rgba(255, 255, 255, 0.88)";
+        ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
         ctx.font = "600 24px 'Inter', sans-serif";
         ctx.fillText(classText, 540, subY);
       } else if (phone) {
         ctx.fillStyle = t.accent;
-        ctx.font = "600 22px 'Inter', sans-serif";
+        ctx.font = "600 23px 'Inter', sans-serif";
         ctx.fillText(phone, 540, subY);
       }
+    }
+
+    function fitText(c, text, maxWidth, startingSize, weight, family) {
+      let size = startingSize;
+      while (size > 24) {
+        c.font = `${weight} ${size}px ${family}`;
+        if (c.measureText(text).width <= maxWidth) return size;
+        size -= 2;
+      }
+      return size;
     }
 
     function wrapText(c, text, x, startY, maxWidth, lineHeight) {
@@ -669,7 +699,7 @@
           const file = new File([blob], `Pinnacle-${state.template.id}.png`, { type: "image/png" });
           await navigator.share({
             title: `${state.template.headline} — Pinnacle Global School`,
-            text: "Warm greetings from Pinnacle Global School!",
+            text: "Warm festive wishes from Pinnacle Global School!",
             files: [file]
           });
         } catch (err) {
