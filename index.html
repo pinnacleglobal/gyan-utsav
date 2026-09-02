@@ -76,14 +76,44 @@
       border-radius: 28px;
       padding: clamp(30px, 5vw, 54px);
       box-shadow: var(--shadow-lg);
-      margin-bottom: 30px;
+      margin-bottom: 34px;
     }
     .eyebrow { display: inline-block; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); }
     .hero h1 { font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.05; letter-spacing: -0.04em; margin: 12px 0 16px; font-weight: 800; }
     .hero h1 span { color: #ffd76a; }
     .hero p { max-width: 620px; color: rgba(255,255,255,0.85); font-size: 1rem; line-height: 1.6; }
 
+    /* GALLERY */
+    .section-head { margin-bottom: 22px; }
+    .section-head h2 { font-size: 1.55rem; font-weight: 800; color: var(--navy); }
+    .section-head p { color: var(--muted); margin-top: 4px; font-size: 0.92rem; }
+
+    .template-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 360px)); gap: 24px; }
+    .template-card {
+      border: 1px solid var(--line);
+      background: var(--card);
+      border-radius: 22px;
+      padding: 12px;
+      text-align: left;
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .template-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-color: #cbd5e1; }
+    .template-thumb {
+      aspect-ratio: 2 / 3;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #090e1a;
+      position: relative;
+    }
+    .template-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .template-info { padding: 14px 6px 4px; }
+    .template-info strong { display: block; font-size: 1.1rem; color: var(--ink); }
+    .template-info span { display: block; margin-top: 3px; color: var(--muted); font-size: 0.82rem; font-weight: 600; }
+
     /* EDITOR LAYOUT */
+    .back-btn { background: none; border: none; color: var(--navy); font-weight: 700; font-size: 0.95rem; margin-bottom: 20px; display: inline-flex; align-items: center; gap: 6px; }
     .editor-layout { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(340px, 0.85fr); gap: 28px; align-items: start; }
     .preview-card, .form-card { background: #fff; border: 1px solid var(--line); border-radius: 24px; box-shadow: var(--shadow-sm); }
     .preview-card { padding: 22px; }
@@ -106,12 +136,14 @@
     .btn-action { border: 0; padding: 14px; border-radius: 12px; font-weight: 700; font-size: 0.92rem; display: flex; align-items: center; justify-content: center; gap: 6px; }
     .btn-action.primary { background: linear-gradient(135deg, var(--navy), #0d2c68); color: white; box-shadow: 0 4px 14px rgba(7, 29, 73, 0.2); }
     .btn-action.secondary { background: #e2e8f0; color: var(--navy); }
+    .text-btn { display: block; width: 100%; margin-top: 16px; background: none; border: 0; color: var(--muted); font-size: 0.85rem; font-weight: 700; text-align: center; }
 
     footer { text-align: center; padding: 40px 16px; color: var(--navy); font-weight: 800; font-size: 0.85rem; }
     .toast { position: fixed; left: 50%; bottom: 28px; transform: translate(-50%, 40px); background: #0f172a; color: white; padding: 12px 22px; border-radius: 999px; font-size: 0.85rem; font-weight: 600; opacity: 0; pointer-events: none; transition: all 0.25s ease; z-index: 100; box-shadow: 0 10px 25px rgba(0,0,0,0.25); }
     .toast.show { opacity: 1; transform: translate(-50%, 0); }
 
     @media (max-width: 860px) {
+      .template-grid { grid-template-columns: 1fr; }
       .editor-layout { grid-template-columns: 1fr; }
       .form-card { position: static; }
     }
@@ -135,52 +167,69 @@
   </header>
 
   <main class="container">
-    <div class="hero">
-      <span class="eyebrow">PINNACLE GLOBAL SCHOOL</span>
-      <h1>Create a poster.<br><span>Share the Pinnacle.</span></h1>
-      <p>Personalize your Diwali greeting poster. Enter your details below and download your high-resolution poster instantly.</p>
-    </div>
-
-    <div class="editor-layout">
-      <div class="preview-card">
-        <div class="preview-head">
-          <span class="eyebrow">LIVE PREVIEW</span>
-          <h2>Happy Diwali Poster</h2>
-        </div>
-
-        <div class="canvas-wrap">
-          <canvas id="posterCanvas" width="1080" height="1620"></canvas>
-        </div>
+    <!-- HOME / GALLERY VIEW -->
+    <section id="homeView">
+      <div class="hero">
+        <span class="eyebrow">PINNACLE GLOBAL SCHOOL</span>
+        <h1>Create a poster.<br><span>Share the Pinnacle.</span></h1>
+        <p>Choose an occasion below to customize your high-definition greeting poster with your name, class, and contact details.</p>
       </div>
 
-      <div class="form-card">
-        <div class="form-heading">
-          <span class="eyebrow">PERSONALIZE</span>
-          <h2>Your details</h2>
-          <p>Fill out the fields below. Watch your details appear on the bottom badge in real time.</p>
+      <div class="section-head">
+        <h2>Choose a Festival / Occasion</h2>
+        <p>Select any design to personalize and export.</p>
+      </div>
+
+      <div id="templateGrid" class="template-grid"></div>
+    </section>
+
+    <!-- POSTER EDITOR VIEW -->
+    <section id="editorView" class="hidden">
+      <button id="backBtn" class="back-btn" type="button">← Back to gallery</button>
+
+      <div class="editor-layout">
+        <div class="preview-card">
+          <div class="preview-head">
+            <span class="eyebrow">LIVE PREVIEW</span>
+            <h2 id="selectedTitle">Poster</h2>
+          </div>
+
+          <div class="canvas-wrap">
+            <canvas id="posterCanvas" width="1080" height="1620"></canvas>
+          </div>
         </div>
 
-        <label>
-          Your Full Name
-          <input id="nameInput" maxlength="35" placeholder="e.g. Aryan Sharma">
-        </label>
+        <div class="form-card">
+          <div class="form-heading">
+            <span class="eyebrow">PERSONALIZE</span>
+            <h2>Your details</h2>
+            <p>Fill out the fields below. Watch your details appear on the bottom badge in real time.</p>
+          </div>
 
-        <label>
-          Designation / Class
-          <input id="classInput" maxlength="35" placeholder="e.g. Class X / Proud Parent / Teacher">
-        </label>
+          <label>
+            Your Full Name
+            <input id="nameInput" maxlength="35" placeholder="e.g. Aryan Sharma">
+          </label>
 
-        <label>
-          Phone Number <span class="optional">(optional)</span>
-          <input id="phoneInput" inputmode="tel" maxlength="16" placeholder="e.g. +91 98765 43210">
-        </label>
+          <label>
+            Designation / Class
+            <input id="classInput" maxlength="35" placeholder="e.g. Class X-A / Teacher / Proud Parent">
+          </label>
 
-        <div class="actions">
-          <button id="downloadBtn" class="btn-action primary" type="button">⬇ Download Poster</button>
-          <button id="shareBtn" class="btn-action secondary" type="button">↗ Share</button>
+          <label>
+            Phone Number <span class="optional">(optional)</span>
+            <input id="phoneInput" inputmode="tel" maxlength="16" placeholder="e.g. +91 98765 43210">
+          </label>
+
+          <div class="actions">
+            <button id="downloadBtn" class="btn-action primary" type="button">⬇ Download Poster</button>
+            <button id="shareBtn" class="btn-action secondary" type="button">↗ Share</button>
+          </div>
+
+          <button id="newBtn" class="text-btn" type="button">Choose a different design</button>
         </div>
       </div>
-    </div>
+    </section>
   </main>
 
   <footer>
@@ -190,18 +239,50 @@
   <div id="toast" class="toast"></div>
 
   <script>
-    // Points to the templates folder
-    const TEMPLATE_SRC = "templates/diwali.png";
+    // Templates stored inside your templates/ folder
+    const templates = [
+      {
+        id: "diwali",
+        name: "Happy Diwali",
+        category: "Festival of Lights",
+        file: "templates/diwali.png"
+      },
+      {
+        id: "dussehra",
+        name: "Vijayadashami / Dussehra",
+        category: "Festival of Victory",
+        file: "templates/dussehra.png"
+      }
+    ];
 
+    let currentTemplate = templates[0];
+    let currentBgImg = null;
+
+    const homeView = document.getElementById("homeView");
+    const editorView = document.getElementById("editorView");
+    const templateGrid = document.getElementById("templateGrid");
     const canvas = document.getElementById("posterCanvas");
     const ctx = canvas.getContext("2d");
+    const selectedTitle = document.getElementById("selectedTitle");
     const nameInput = document.getElementById("nameInput");
     const classInput = document.getElementById("classInput");
     const phoneInput = document.getElementById("phoneInput");
     const toast = document.getElementById("toast");
     const installBtn = document.getElementById("installBtn");
 
-    let bgImg = null;
+    function renderGallery() {
+      templateGrid.innerHTML = templates.map(t => `
+        <div class="template-card" onclick="selectTemplate('${t.id}')">
+          <div class="template-thumb">
+            <img src="${t.file}" alt="${t.name}">
+          </div>
+          <div class="template-info">
+            <strong>${t.name}</strong>
+            <span>${t.category}</span>
+          </div>
+        </div>
+      `).join("");
+    }
 
     function loadImage(src) {
       return new Promise((resolve) => {
@@ -212,6 +293,24 @@
       });
     }
 
+    async function selectTemplate(id) {
+      currentTemplate = templates.find(t => t.id === id) || templates[0];
+      selectedTitle.textContent = `${currentTemplate.name} Poster`;
+      
+      homeView.classList.add("hidden");
+      editorView.classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+
+      currentBgImg = await loadImage(currentTemplate.file);
+      drawPoster();
+    }
+
+    function showHome() {
+      editorView.classList.add("hidden");
+      homeView.classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
     function showToast(msg) {
       toast.textContent = msg;
       toast.classList.add("show");
@@ -220,11 +319,11 @@
     }
 
     function drawPoster() {
-      // 1. Draw the HD Background Image from templates/diwali.png
-      if (bgImg) {
-        ctx.drawImage(bgImg, 0, 0, 1080, 1620);
+      // 1. Draw HD Background image from templates folder
+      if (currentBgImg) {
+        ctx.drawImage(currentBgImg, 0, 0, 1080, 1620);
       } else {
-        ctx.fillStyle = "#2d053d";
+        ctx.fillStyle = "#1c062c";
         ctx.fillRect(0, 0, 1080, 1620);
       }
 
@@ -233,23 +332,23 @@
       const userClass = classInput.value.trim();
       const phone = phoneInput.value.trim();
 
-      // Center X coordinate of the blank badge
+      // Center coordinate of the bottom badge
       const cx = 540;
       ctx.textAlign = "center";
 
-      // 3. Header phrase: Warm Wishes From
+      // 3. Header phrase
       ctx.fillStyle = "#8a581e";
       ctx.font = "800 20px 'Plus Jakarta Sans', sans-serif";
       ctx.letterSpacing = "3px";
       ctx.fillText("WARM WISHES FROM", cx, 1408);
       ctx.letterSpacing = "0px";
 
-      // 4. Full Name (Bold, High Contrast Charcoal-Brown)
+      // 4. Full Name
       ctx.fillStyle = "#1e0f04";
       ctx.font = "800 44px 'Plus Jakarta Sans', sans-serif";
       ctx.fillText(name || "Your Name", cx, 1458);
 
-      // 5. Class / Designation & Optional Contact Number
+      // 5. Class / Designation & Phone
       if (userClass && phone) {
         ctx.fillStyle = "#4a3520";
         ctx.font = "600 24px 'Plus Jakarta Sans', sans-serif";
@@ -271,8 +370,8 @@
 
     function downloadPoster() {
       const link = document.createElement("a");
-      const cleanName = (nameInput.value.trim() || "Diwali").replace(/[^a-z0-9]/gi, "_");
-      link.download = `Pinnacle-Diwali-${cleanName}.png`;
+      const cleanName = (nameInput.value.trim() || currentTemplate.id).replace(/[^a-z0-9]/gi, "_");
+      link.download = `Pinnacle-${currentTemplate.id}-${cleanName}.png`;
       link.href = canvas.toDataURL("image/png", 1.0);
       link.click();
       showToast("Poster downloaded successfully!");
@@ -285,10 +384,10 @@
       }
       canvas.toBlob(async (blob) => {
         try {
-          const file = new File([blob], "Pinnacle-Diwali.png", { type: "image/png" });
+          const file = new File([blob], `Pinnacle-${currentTemplate.id}.png`, { type: "image/png" });
           await navigator.share({
-            title: "Happy Diwali — Pinnacle Global School",
-            text: "Wishing you a joyous and prosperous Diwali!",
+            title: `${currentTemplate.name} — Pinnacle Global School`,
+            text: `Warm wishes on ${currentTemplate.name}!`,
             files: [file]
           });
         } catch (err) {
@@ -324,10 +423,12 @@
       showToast("GyanUtsav installed!");
     });
 
+    document.getElementById("backBtn").addEventListener("click", showHome);
+    document.getElementById("newBtn").addEventListener("click", showHome);
     document.getElementById("downloadBtn").addEventListener("click", downloadPoster);
     document.getElementById("shareBtn").addEventListener("click", sharePoster);
 
-    // Instant update on typing
+    // Live typing listeners
     [nameInput, classInput, phoneInput].forEach(el => {
       el.addEventListener("input", drawPoster);
       el.addEventListener("keyup", drawPoster);
@@ -335,11 +436,10 @@
     });
 
     async function init() {
-      bgImg = await loadImage(TEMPLATE_SRC);
+      renderGallery();
       if (document.fonts) {
         await document.fonts.ready;
       }
-      drawPoster();
     }
     init();
   </script>
