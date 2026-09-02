@@ -1,0 +1,15 @@
+{
+  "short_name": "GyanUtsav",
+  "name": "GyanUtsav - Pinnacle Global School",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3659/3659898.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "./index.html",
+  "background_color": "#0d1b2a",
+  "theme_color": "#1b263b",
+  "display": "standalone"
+}
