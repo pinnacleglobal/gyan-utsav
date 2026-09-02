@@ -8,9 +8,10 @@
   <link rel="manifest" href="manifest.json">
   <title>GyanUtsav — Pinnacle Creative Studio</title>
   
+  <!-- Premium Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -34,7 +35,7 @@
     button { cursor: pointer; }
     .hidden { display: none !important; }
 
-    /* --- TOPBAR --- */
+    /* TOPBAR */
     .topbar {
       min-height: 74px;
       padding: 10px max(20px, calc((100vw - 1180px) / 2));
@@ -66,7 +67,7 @@
     }
     .install-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(7, 29, 73, 0.28); }
 
-    /* --- CONTAINER & HERO --- */
+    /* HERO */
     .container { width: min(1180px, calc(100% - 32px)); margin: 0 auto; padding: 24px 0 60px; }
 
     .hero {
@@ -92,12 +93,11 @@
       pointer-events: none;
     }
     .eyebrow { display: inline-block; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); }
-    .hero h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(2rem, 5vw, 3.6rem); line-height: 1.05; letter-spacing: -0.04em; margin: 12px 0 16px; font-weight: 800; }
+    .hero h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.05; letter-spacing: -0.04em; margin: 12px 0 16px; font-weight: 800; }
     .hero h1 span { color: var(--gold-light); }
     .hero p { max-width: 620px; color: rgba(255,255,255,0.85); font-size: 0.98rem; line-height: 1.6; }
-    .hero-badge { position: absolute; right: 32px; top: 32px; border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.1); backdrop-filter: blur(8px); padding: 6px 14px; border-radius: 999px; font-size: 0.75rem; font-weight: 800; }
 
-    /* --- TEMPLATE GALLERY --- */
+    /* TEMPLATE GALLERY */
     .section-head { margin: 40px 0 20px; }
     .section-head h2 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.5rem; font-weight: 800; letter-spacing: -0.02em; color: var(--navy); }
     .section-head p { color: var(--muted); margin-top: 4px; font-size: 0.9rem; }
@@ -110,26 +110,26 @@
       padding: 12px;
       text-align: left;
       box-shadow: var(--shadow-sm);
+      cursor: pointer;
       transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     }
     .template-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: #cbd5e1; }
     .template-thumb { aspect-ratio: 4 / 5; border-radius: 14px; overflow: hidden; position: relative; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.15); }
     .template-thumb-inner { position: absolute; inset: 0; padding: 18px 14px; display: flex; flex-direction: column; justify-content: space-between; align-items: center; color: white; text-align: center; }
-    .template-logo-preview { width: 52px; height: 52px; object-fit: contain; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.3)); }
-    .thumb-title { font-family: 'Cinzel', serif; font-size: 1.25rem; font-weight: 800; letter-spacing: 0.05em; text-shadow: 0 2px 10px rgba(0,0,0,0.4); }
-    .thumb-name { font-size: 0.7rem; font-weight: 600; opacity: 0.85; letter-spacing: 0.03em; }
+    .template-logo-preview { width: 56px; height: 56px; object-fit: contain; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4)); }
+    .thumb-title { font-family: 'Cinzel', serif; font-size: 1.25rem; font-weight: 800; letter-spacing: 0.05em; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+    .thumb-badge { font-size: 0.72rem; font-weight: 700; background: rgba(0,0,0,0.3); padding: 4px 12px; border-radius: 999px; backdrop-filter: blur(4px); }
     .template-info { padding: 12px 6px 4px; }
     .template-info strong { display: block; font-size: 1rem; color: var(--ink); }
     .template-info span { display: block; margin-top: 2px; color: var(--muted); font-size: 0.78rem; font-weight: 500; }
 
-    /* --- EDITOR VIEW --- */
+    /* EDITOR VIEW */
     .back-btn { background: none; border: none; color: var(--navy); font-weight: 700; font-size: 0.95rem; margin-bottom: 20px; display: inline-flex; align-items: center; gap: 6px; }
     .editor-layout { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(340px, 0.85fr); gap: 28px; align-items: start; }
     .preview-card, .form-card { background: #fff; border: 1px solid var(--line); border-radius: 24px; box-shadow: var(--shadow-sm); }
     .preview-card { padding: 22px; }
-    .preview-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+    .preview-head { margin-bottom: 16px; }
     .preview-head h2 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.25rem; font-weight: 800; color: var(--navy); }
-    .lock-pill { background: #f1f5f9; border: 1px solid var(--line); color: #475569; border-radius: 999px; padding: 6px 12px; font-size: 0.72rem; font-weight: 700; }
 
     .canvas-wrap { width: 100%; max-width: 540px; margin: 0 auto; background: #0b1329; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
     canvas { width: 100%; height: auto; display: block; }
@@ -143,10 +143,7 @@
     input { width: 100%; margin-top: 6px; border: 1px solid #cbd5e1; background: #f8fafc; color: var(--ink); padding: 12px 14px; border-radius: 12px; font-size: 0.9rem; transition: border-color 0.15s, box-shadow 0.15s; }
     input:focus { border-color: #2563eb; background: #ffffff; box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1); }
 
-    .share-note { display: grid; gap: 3px; margin: 20px 0; padding: 12px 14px; border-radius: 12px; background: #f1f5f9; border-left: 3px solid var(--navy); font-size: 0.75rem; line-height: 1.45; color: #475569; }
-    .share-note strong { color: var(--navy); }
-
-    .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+    .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 24px; }
     .btn-action { border: 0; padding: 14px; border-radius: 12px; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; gap: 6px; }
     .btn-action.primary { background: linear-gradient(135deg, var(--navy), #0d2c68); color: white; box-shadow: 0 4px 14px rgba(7, 29, 73, 0.2); }
     .btn-action.secondary { background: #e2e8f0; color: var(--navy); }
@@ -176,7 +173,7 @@
 
   <header class="topbar">
     <div class="brand">
-      <img src="assets/logo.png" id="headerLogo" alt="Pinnacle Global School">
+      <img src="logo.png" alt="Pinnacle Global School" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2997/2997295.png'">
       <div>
         <div class="brand-name">GyanUtsav</div>
         <div class="brand-subtitle">Pinnacle Creative Studio</div>
@@ -186,12 +183,12 @@
   </header>
 
   <main class="container">
+    <!-- HOME SCREEN -->
     <section id="homeView">
       <div class="hero">
         <span class="eyebrow">PINNACLE GLOBAL SCHOOL</span>
         <h1>Create a poster.<br><span>Share the Pinnacle.</span></h1>
-        <p>Craft bespoke festive greetings and national day posters with your details. School branding is permanently forged into every design.</p>
-        <div class="hero-badge">GyanUtsav V1</div>
+        <p>Craft bespoke festive greetings and national day posters with your details. School branding is permanently built into every design.</p>
       </div>
 
       <div class="section-head">
@@ -202,17 +199,15 @@
       <div id="templateGrid" class="template-grid"></div>
     </section>
 
+    <!-- POSTER EDITOR SCREEN -->
     <section id="editorView" class="hidden">
-      <button id="backBtn" class="back-btn" type="button">← Back to gallery</button>
+      <button id="backBtn" class="back-btn" type="button">← Back to designs</button>
 
       <div class="editor-layout">
         <div class="preview-card">
           <div class="preview-head">
-            <div>
-              <span class="eyebrow">LIVE RENDER</span>
-              <h2 id="selectedTitle">Festival Poster</h2>
-            </div>
-            <span class="lock-pill">🔒 PGS Brand Locked</span>
+            <span class="eyebrow">LIVE PREVIEW</span>
+            <h2 id="selectedTitle">Festival Poster</h2>
           </div>
 
           <div class="canvas-wrap">
@@ -222,8 +217,8 @@
 
         <div class="form-card">
           <div class="form-heading">
-            <span class="eyebrow">CUSTOMIZE</span>
-            <h2>Personal details</h2>
+            <span class="eyebrow">PERSONALIZE</span>
+            <h2>Your details</h2>
             <p>Rendered locally on your device for immediate high-resolution export.</p>
           </div>
 
@@ -234,7 +229,7 @@
 
           <label>
             Designation / Class
-            <input id="classInput" maxlength="32" placeholder="e.g. Class X-A or Proud Parent">
+            <input id="classInput" maxlength="32" placeholder="e.g. Class X-A / Teacher / Proud Parent">
           </label>
 
           <label>
@@ -246,11 +241,6 @@
             Phone Number <span class="optional">(optional)</span>
             <input id="phoneInput" inputmode="tel" maxlength="15" placeholder="e.g. +91 98765 43210">
           </label>
-
-          <div class="share-note">
-            <strong>Organic School Outreach</strong>
-            <span>Pinnacle Global School's identity, crest, and core values are permanently integrated into this high-res output.</span>
-          </div>
 
           <div class="actions">
             <button id="downloadBtn" class="btn-action primary" type="button">⬇ Download</button>
@@ -264,76 +254,82 @@
   </main>
 
   <footer>
-    <div>Tradition • Innovation • Excellence</div>
-    <div class="subtext">Pinnacle Global School · GyanUtsav Engine V1</div>
+    <div>Pinnacle Global School Creative Studio</div>
+    <div class="subtext">Empowering Minds • Inspiring Futures</div>
   </footer>
 
   <div id="toast" class="toast"></div>
 
   <script>
-    const LOGO_SRC = "assets/logo.png";
+    // Logo in main/root folder
+    const LOGO_SRC = "logo.png";
 
-    // Premium template configurations with custom visual renderers
     const templates = [
       {
         id: "diwali",
         name: "Deepawali",
         category: "Festival of Lights",
-        message: "May the divine light illuminate your path with joy, prosperity, and endless wisdom.",
-        bg: ["#240538", "#08020f"],
-        accent: "#ffc837",
+        message: "May the divine light of Diwali bring peace, prosperity, and endless joy to you and your family.",
+        bg: ["#2d053d", "#080112"],
+        accent: "#f5ba31",
+        accent2: "#ff4500",
         headline: "HAPPY DIWALI",
-        illustration: "diwali"
+        type: "diwali"
       },
       {
         id: "holi",
-        name: "Holi Festival",
+        name: "Holi Celebration",
         category: "Festival of Colours",
-        message: "May your life be painted with the vibrant colours of joy, peace, and eternal laughter.",
-        bg: ["#4a0e4e", "#130324"],
-        accent: "#00f2fe",
+        message: "May your life be painted with radiant colours of laughter, friendship, and eternal bliss.",
+        bg: ["#3b074a", "#0d0219"],
+        accent: "#ff007f",
+        accent2: "#00f2fe",
         headline: "HAPPY HOLI",
-        illustration: "holi"
+        type: "holi"
       },
       {
         id: "independence",
         name: "Independence Day",
-        category: "National Celebration",
-        message: "Saluting the glorious heritage, timeless courage, and vibrant future of our motherland.",
-        bg: ["#02231c", "#021017"],
+        category: "National Day",
+        message: "Saluting the valor, sacrifice, and glorious heritage of our great nation. Proud to be Indian!",
+        bg: ["#02231c", "#020f17"],
         accent: "#ff9933",
+        accent2: "#138808",
         headline: "INDEPENDENCE DAY",
-        illustration: "tricolor"
+        type: "patriotic"
       },
       {
         id: "republic",
         name: "Republic Day",
         category: "National Day",
-        message: "Upholding the sacred ideals of justice, liberty, equality, and unity across the nation.",
+        message: "Celebrating justice, liberty, and democratic unity across the motherland. Jai Hind!",
         bg: ["#081d3a", "#020914"],
-        accent: "#2ecc71",
-        headline: "REPUBLIC DAY",
-        illustration: "republic"
+        accent: "#ff9933",
+        accent2: "#2ecc71",
+        headline: "HAPPY REPUBLIC DAY",
+        type: "patriotic"
       },
       {
         id: "teachers",
         name: "Teachers' Day",
-        category: "PGS Observance",
-        message: "In reverence to the torchbearers who sculpt intellects, nurture souls, and build destiny.",
-        bg: ["#141b2d", "#080b12"],
-        accent: "#e2b714",
+        category: "School Observance",
+        message: "In deep gratitude to the noble mentors who ignite minds, inspire character, and shape tomorrow.",
+        bg: ["#141f36", "#060a12"],
+        accent: "#ffd15c",
+        accent2: "#38bdf8",
         headline: "TEACHERS' DAY",
-        illustration: "education"
+        type: "education"
       },
       {
         id: "newyear",
         name: "New Year Celebration",
         category: "Annual Milestone",
-        message: "Welcoming a brand new chapter filled with grand aspirations, discovery, and breakthroughs.",
+        message: "Wishing you 365 days of grand success, boundless health, and thrilling new opportunities.",
         bg: ["#0a192f", "#020c1b"],
-        accent: "#64ffda",
+        accent: "#00f2fe",
+        accent2: "#ffd700",
         headline: "HAPPY NEW YEAR",
-        illustration: "celebration"
+        type: "celebration"
       }
     ];
 
@@ -342,7 +338,6 @@
       logo: null
     };
 
-    // DOM Elements
     const homeView = document.getElementById("homeView");
     const editorView = document.getElementById("editorView");
     const templateGrid = document.getElementById("templateGrid");
@@ -361,7 +356,12 @@
         const img = new Image();
         img.crossOrigin = "anonymous";
         img.onload = () => { state.logo = img; resolve(img); };
-        img.onerror = () => { console.warn("Logo failed to load from:", LOGO_SRC); resolve(null); };
+        img.onerror = () => {
+          // Fallback to online logo if local logo.png is missing
+          img.src = "https://cdn-icons-png.flaticon.com/512/2997/2997295.png";
+          img.onload = () => { state.logo = img; resolve(img); };
+          img.onerror = () => resolve(null);
+        };
         img.src = LOGO_SRC;
       });
     }
@@ -369,16 +369,16 @@
     function renderGallery() {
       templateGrid.innerHTML = templates.map(t => `
         <div class="template-card" onclick="openEditor('${t.id}')">
-          <div class="template-thumb" style="background: linear-gradient(145deg, ${t.bg[0]}, ${t.bg[1]})">
+          <div class="template-thumb" style="background: radial-gradient(circle at 50% 30%, ${t.bg[0]}, ${t.bg[1]})">
             <div class="template-thumb-inner">
-              <img class="template-logo-preview" src="${LOGO_SRC}" alt="" onerror="this.style.display='none'">
+              <img class="template-logo-preview" src="${LOGO_SRC}" alt="PGS" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2997/2997295.png'">
               <div class="thumb-title">${t.headline}</div>
-              <div class="thumb-name">Pinnacle Global School</div>
+              <div class="thumb-badge">${t.category}</div>
             </div>
           </div>
           <div class="template-info">
             <strong>${t.name}</strong>
-            <span>${t.category}</span>
+            <span>Tap to personalize</span>
           </div>
         </div>
       `).join("");
@@ -407,79 +407,130 @@
       showToast.timer = setTimeout(() => toast.classList.remove("show"), 2500);
     }
 
-    // --- CANVAS GRAPHIC ENGINE ---
-    function drawOrnateBorder(accent) {
-      ctx.save();
-      // Outer border
-      ctx.strokeStyle = accent;
-      ctx.lineWidth = 4;
-      ctx.strokeRect(40, 40, 1000, 1270);
-
-      // Inner thin border
-      ctx.strokeStyle = "rgba(255,255,255,0.18)";
-      ctx.lineWidth = 1.5;
-      ctx.strokeRect(48, 48, 984, 1254);
-
-      // Classical corner accents
-      const corners = [[40, 40], [1040, 40], [40, 1310], [1040, 1310]];
-      corners.forEach(([cx, cy]) => {
-        ctx.fillStyle = accent;
-        ctx.beginPath();
-        ctx.arc(cx, cy, 6, 0, Math.PI * 2);
-        ctx.fill();
-      });
-      ctx.restore();
-    }
-
-    function drawIllustrations(type, accent) {
+    /* ARTWORK AND VISUAL THEMES */
+    function drawArtwork(type, accent, accent2) {
       ctx.save();
       if (type === "diwali") {
-        // Glowing Diya
-        const glow = ctx.createRadialGradient(540, 560, 10, 540, 560, 180);
-        glow.addColorStop(0, "rgba(255, 200, 55, 0.45)");
-        glow.addColorStop(1, "rgba(255, 200, 55, 0)");
+        // Glowing aura
+        const glow = ctx.createRadialGradient(540, 680, 20, 540, 680, 260);
+        glow.addColorStop(0, "rgba(255, 200, 50, 0.45)");
+        glow.addColorStop(0.5, "rgba(255, 120, 0, 0.2)");
+        glow.addColorStop(1, "rgba(0, 0, 0, 0)");
         ctx.fillStyle = glow;
         ctx.beginPath();
-        ctx.arc(540, 560, 180, 0, Math.PI * 2);
+        ctx.arc(540, 680, 260, 0, Math.PI * 2);
         ctx.fill();
 
-        // Diya Base
-        ctx.fillStyle = accent;
+        // Diya Base (Golden Brass)
+        const diyaGrad = ctx.createLinearGradient(420, 690, 660, 750);
+        diyaGrad.addColorStop(0, "#ffe066");
+        diyaGrad.addColorStop(0.5, "#d4af37");
+        diyaGrad.addColorStop(1, "#996515");
+        ctx.fillStyle = diyaGrad;
         ctx.beginPath();
-        ctx.ellipse(540, 600, 85, 34, 0, 0, Math.PI);
+        ctx.moveTo(420, 690);
+        ctx.quadraticCurveTo(540, 770, 660, 690);
+        ctx.quadraticCurveTo(540, 720, 420, 690);
         ctx.fill();
 
-        // Flame
-        ctx.fillStyle = "#ffffff";
+        // Diya Rim
+        ctx.strokeStyle = "#fff2a8";
+        ctx.lineWidth = 4;
+        ctx.stroke();
+
+        // Flame Outer
+        const flameGrad = ctx.createLinearGradient(540, 570, 540, 690);
+        flameGrad.addColorStop(0, "#ffffff");
+        flameGrad.addColorStop(0.25, "#ffe600");
+        flameGrad.addColorStop(0.7, "#ff5500");
+        flameGrad.addColorStop(1, "rgba(255,0,0,0)");
+        ctx.fillStyle = flameGrad;
         ctx.beginPath();
-        ctx.moveTo(540, 510);
-        ctx.quadraticCurveTo(555, 555, 540, 575);
-        ctx.quadraticCurveTo(525, 555, 540, 510);
+        ctx.moveTo(540, 570);
+        ctx.bezierCurveTo(570, 630, 565, 685, 540, 690);
+        ctx.bezierCurveTo(515, 685, 510, 630, 540, 570);
         ctx.fill();
-      } else if (type === "tricolor" || type === "republic") {
-        // Subtle patriotic ribbons / Ashoka rays
-        const center = 570;
-        ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
+
+        // Floating Golden Sparkles
+        for (let i = 0; i < 40; i++) {
+          const sx = (i * 123) % 920 + 80;
+          const sy = (i * 97) % 460 + 440;
+          ctx.fillStyle = accent;
+          ctx.globalAlpha = (i % 2 === 0) ? 0.8 : 0.35;
+          ctx.beginPath();
+          ctx.arc(sx, sy, (i % 3 === 0) ? 3.5 : 2, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      } else if (type === "holi") {
+        // Multi-colored Gulal Splashes
+        const colors = [accent, accent2, "#f43f5e", "#10b981", "#fbbf24"];
+        for (let s = 0; s < 18; s++) {
+          const cx = (s * 179) % 860 + 110;
+          const cy = (s * 113) % 420 + 460;
+          const rad = (s % 4 + 2) * 14;
+          const col = colors[s % colors.length];
+          const grad = ctx.createRadialGradient(cx, cy, 2, cx, cy, rad);
+          grad.addColorStop(0, col);
+          grad.addColorStop(1, "transparent");
+          ctx.fillStyle = grad;
+          ctx.globalAlpha = 0.55;
+          ctx.beginPath();
+          ctx.arc(cx, cy, rad, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      } else if (type === "patriotic") {
+        // Indian Tiranga Elegant Radiance
+        const rays = 24;
+        ctx.strokeStyle = "rgba(255, 255, 255, 0.1)";
         ctx.lineWidth = 2;
-        for (let i = 0; i < 24; i++) {
+        for (let i = 0; i < rays; i++) {
           const angle = (i * 15 * Math.PI) / 180;
           ctx.beginPath();
-          ctx.moveTo(540, center);
-          ctx.lineTo(540 + Math.cos(angle) * 110, center + Math.sin(angle) * 110);
+          ctx.moveTo(540, 660);
+          ctx.lineTo(540 + Math.cos(angle) * 130, 660 + Math.sin(angle) * 130);
           ctx.stroke();
         }
+        // Concentric Chakra Ring
+        ctx.strokeStyle = "#4da6ff";
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.arc(540, 660, 60, 0, Math.PI * 2);
+        ctx.stroke();
       } else {
-        // Ambient sparkle matrix
-        for (let i = 0; i < 45; i++) {
-          const sx = (i * 137) % 960 + 60;
-          const sy = (i * 93) % 400 + 440;
+        // Starfield / Bokeh for celebration & teachers
+        for (let i = 0; i < 50; i++) {
+          const bx = (i * 163) % 940 + 70;
+          const by = (i * 89) % 500 + 420;
           ctx.fillStyle = accent;
-          ctx.globalAlpha = (i % 3 === 0) ? 0.7 : 0.25;
+          ctx.globalAlpha = (i % 2 === 0) ? 0.75 : 0.25;
           ctx.beginPath();
-          ctx.arc(sx, sy, (i % 4 === 0) ? 3 : 1.5, 0, Math.PI * 2);
+          ctx.arc(bx, by, (i % 4 === 0) ? 4 : 2, 0, Math.PI * 2);
           ctx.fill();
         }
       }
+      ctx.restore();
+    }
+
+    function drawBorders(accent) {
+      ctx.save();
+      // Outer Frame
+      ctx.strokeStyle = accent;
+      ctx.lineWidth = 5;
+      ctx.strokeRect(36, 36, 1008, 1278);
+
+      // Inner Frame
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.2)";
+      ctx.lineWidth = 1.5;
+      ctx.strokeRect(46, 46, 988, 1258);
+
+      // Corner Jewels
+      const corners = [[36, 36], [1044, 36], [36, 1314], [1044, 1314]];
+      corners.forEach(([cx, cy]) => {
+        ctx.fillStyle = accent;
+        ctx.beginPath();
+        ctx.arc(cx, cy, 7, 0, Math.PI * 2);
+        ctx.fill();
+      });
       ctx.restore();
     }
 
@@ -490,95 +541,85 @@
       const message = messageInput.value.trim() || t.message;
       const phone = phoneInput.value.trim();
 
-      // 1. Deep Background Gradient
-      const grad = ctx.createRadialGradient(540, 300, 60, 540, 675, 750);
+      // 1. Rich Canvas Background
+      const grad = ctx.createRadialGradient(540, 420, 80, 540, 675, 800);
       grad.addColorStop(0, t.bg[0]);
       grad.addColorStop(1, t.bg[1]);
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, 1080, 1350);
 
-      // 2. Borders & Artwork
-      drawOrnateBorder(t.accent);
-      drawIllustrations(t.illustration, t.accent);
+      // 2. Borders and Background Festive Graphics
+      drawBorders(t.accent);
+      drawArtwork(t.type, t.accent, t.accent2);
 
-      // 3. School Branding Crest Header
-      if (state.logo) {
-        const logoH = 130;
-        const logoW = (state.logo.width / state.logo.height) * logoH;
-        ctx.drawImage(state.logo, (1080 - logoW) / 2, 85, logoW, logoH);
+      // 3. School Logo (Top Center)
+      if (state.logo && state.logo.naturalWidth !== 0) {
+        const logoH = 140;
+        const ratio = state.logo.naturalWidth / state.logo.naturalHeight;
+        const logoW = logoH * ratio;
+        ctx.save();
+        ctx.shadowColor = "rgba(0,0,0,0.6)";
+        ctx.shadowBlur = 18;
+        ctx.drawImage(state.logo, (1080 - logoW) / 2, 80, logoW, logoH);
+        ctx.restore();
       }
 
+      // 4. Festival Headline
       ctx.textAlign = "center";
-      ctx.fillStyle = "#ffffff";
-      ctx.font = "800 32px 'Plus Jakarta Sans', sans-serif";
-      ctx.letterSpacing = "3px";
-      ctx.fillText("PINNACLE GLOBAL SCHOOL", 540, 260);
-
-      ctx.fillStyle = t.accent;
-      ctx.font = "700 15px 'Inter', sans-serif";
-      ctx.letterSpacing = "5px";
-      ctx.fillText("AFFILIATED TO CBSE • NEW DELHI", 540, 290);
-
-      // Decorative divider
-      ctx.strokeStyle = "rgba(255,255,255,0.2)";
-      ctx.lineWidth = 1;
-      ctx.beginPath();
-      ctx.moveTo(340, 320);
-      ctx.lineTo(740, 320);
-      ctx.stroke();
-
-      // 4. Center Headline
       ctx.fillStyle = t.accent;
       ctx.font = "900 68px 'Cinzel', serif";
-      ctx.shadowColor = "rgba(0,0,0,0.5)";
-      ctx.shadowBlur = 18;
-      ctx.fillText(t.headline, 540, 440);
+      ctx.shadowColor = "rgba(0,0,0,0.7)";
+      ctx.shadowBlur = 20;
+      ctx.fillText(t.headline, 540, 480);
       ctx.shadowBlur = 0;
 
-      // Festive Message Wrap
-      ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
-      ctx.font = "500 29px 'Inter', sans-serif";
-      wrapText(ctx, message, 540, 680, 800, 44);
-
-      // 5. User Personalization Plate
-      const plateY = 940;
-      ctx.fillStyle = "rgba(255, 255, 255, 0.07)";
-      ctx.strokeStyle = "rgba(255, 255, 255, 0.16)";
-      ctx.lineWidth = 1.5;
-      roundRect(ctx, 120, plateY, 840, 210, 20, true, true);
-
+      // Decorative Accent Underline
       ctx.fillStyle = t.accent;
-      ctx.font = "700 16px 'Inter', sans-serif";
-      ctx.letterSpacing = "3px";
-      ctx.fillText("WARM WISHES FROM", 540, plateY + 45);
+      roundRect(ctx, 420, 508, 240, 5, 3, true, false);
 
-      ctx.fillStyle = "#ffffff";
-      ctx.font = "800 46px 'Plus Jakarta Sans', sans-serif";
-      ctx.fillText(name, 540, plateY + 104);
+      // 5. Festival Greeting Message
+      ctx.fillStyle = "rgba(255, 255, 255, 0.95)";
+      ctx.font = "500 32px 'Inter', sans-serif";
+      wrapText(ctx, message, 540, 800, 820, 48);
 
-      let subY = plateY + 148;
-      if (classText) {
-        ctx.fillStyle = "rgba(255, 255, 255, 0.85)";
-        ctx.font = "600 24px 'Inter', sans-serif";
-        ctx.fillText(classText, 540, subY);
-        subY += 32;
-      }
-      if (phone) {
-        ctx.fillStyle = t.accent;
-        ctx.font = "500 20px 'Inter', sans-serif";
-        ctx.fillText(phone, 540, subY);
-      }
+      // 6. User Personalization Plate (Positioned at the very bottom)
+      const plateH = phone ? 190 : 165;
+      const plateY = 1314 - plateH - 24; // pinned to bottom above margin
 
-      // 6. Institutional Motto Ribbon
+      ctx.fillStyle = "rgba(255, 255, 255, 0.08)";
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.22)";
+      ctx.lineWidth = 2;
+      roundRect(ctx, 80, plateY, 920, plateH, 24, true, true);
+
+      // "Warm Wishes From"
       ctx.fillStyle = t.accent;
       ctx.font = "800 18px 'Inter', sans-serif";
-      ctx.letterSpacing = "4px";
-      ctx.fillText("TRADITION  •  INNOVATION  •  EXCELLENCE", 540, 1230);
+      ctx.letterSpacing = "3px";
+      ctx.fillText("WARM WISHES FROM", 540, plateY + 44);
 
-      ctx.fillStyle = "rgba(255, 255, 255, 0.6)";
-      ctx.font = "500 14px 'Inter', sans-serif";
-      ctx.letterSpacing = "1px";
-      ctx.fillText("www.pinnacleglobalschool.com", 540, 1260);
+      // User's Name
+      ctx.fillStyle = "#ffffff";
+      ctx.font = "800 48px 'Plus Jakarta Sans', sans-serif";
+      ctx.shadowColor = "rgba(0,0,0,0.4)";
+      ctx.shadowBlur = 10;
+      ctx.fillText(name, 540, plateY + 98);
+      ctx.shadowBlur = 0;
+
+      // Class / Designation & Phone
+      let subY = plateY + 138;
+      if (classText && phone) {
+        ctx.fillStyle = "rgba(255, 255, 255, 0.88)";
+        ctx.font = "600 22px 'Inter', sans-serif";
+        ctx.fillText(`${classText}  •  ${phone}`, 540, subY);
+      } else if (classText) {
+        ctx.fillStyle = "rgba(255, 255, 255, 0.88)";
+        ctx.font = "600 24px 'Inter', sans-serif";
+        ctx.fillText(classText, 540, subY);
+      } else if (phone) {
+        ctx.fillStyle = t.accent;
+        ctx.font = "600 22px 'Inter', sans-serif";
+        ctx.fillText(phone, 540, subY);
+      }
     }
 
     function wrapText(c, text, x, startY, maxWidth, lineHeight) {
@@ -604,19 +645,18 @@
       c.arcTo(x + w, y, x + w, y + h, r);
       c.arcTo(x + w, y + h, x, y + h, r);
       c.arcTo(x, y + h, x, y, r);
-      c.arcTo(x, y, x + w, y, r);
+      c.arcTo(x, y + w, y, r);
       c.closePath();
       if (fill) c.fill();
       if (stroke) c.stroke();
     }
 
-    // --- ACTIONS ---
     function downloadPoster() {
       const link = document.createElement("a");
       link.download = `Pinnacle-${state.template.id}-${(nameInput.value.trim() || "Poster").replace(/[^a-z0-9]/gi, "_")}.png`;
       link.href = canvas.toDataURL("image/png", 1.0);
       link.click();
-      showToast("Poster downloaded in high resolution!");
+      showToast("Poster downloaded successfully!");
     }
 
     async function sharePoster() {
@@ -629,7 +669,7 @@
           const file = new File([blob], `Pinnacle-${state.template.id}.png`, { type: "image/png" });
           await navigator.share({
             title: `${state.template.headline} — Pinnacle Global School`,
-            text: "Sharing festive greetings from Pinnacle Global School!",
+            text: "Warm greetings from Pinnacle Global School!",
             files: [file]
           });
         } catch (err) {
@@ -638,7 +678,7 @@
       }, "image/png");
     }
 
-    // --- APP INSTALLATION (PWA) ---
+    // PWA Install Handling
     let deferredPrompt = null;
     const isStandalone = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone;
 
@@ -651,10 +691,7 @@
     }
 
     installBtn.addEventListener("click", async () => {
-      if (!deferredPrompt) {
-        showToast("Use your browser's menu to select 'Add to Home Screen'.");
-        return;
-      }
+      if (!deferredPrompt) return;
       deferredPrompt.prompt();
       const { outcome } = await deferredPrompt.userChoice;
       if (outcome === "accepted") {
@@ -665,10 +702,9 @@
 
     window.addEventListener("appinstalled", () => {
       installBtn.classList.add("hidden");
-      showToast("GyanUtsav installed successfully!");
+      showToast("GyanUtsav installed!");
     });
 
-    // Listeners
     document.getElementById("backBtn").addEventListener("click", showHome);
     document.getElementById("newBtn").addEventListener("click", showHome);
     document.getElementById("downloadBtn").addEventListener("click", downloadPoster);
@@ -678,7 +714,6 @@
       el.addEventListener("input", drawPoster);
     });
 
-    // Initialize
     async function init() {
       renderGallery();
       await loadLogo();
