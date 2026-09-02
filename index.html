@@ -42,7 +42,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.96);
       border-bottom: 1px solid var(--line);
       position: sticky;
       top: 0;
@@ -50,7 +50,7 @@
       backdrop-filter: blur(14px);
     }
     .brand { display: flex; align-items: center; gap: 14px; }
-    .brand img { width: 54px; height: 54px; object-fit: contain; }
+    .brand img { width: 52px; height: 52px; object-fit: contain; }
     .brand-name { font-weight: 800; font-size: 1.25rem; color: var(--navy); letter-spacing: -0.02em; }
     .brand-subtitle { font-size: 0.75rem; color: var(--muted); font-weight: 600; margin-top: 1px; }
 
@@ -97,7 +97,7 @@
     .hero h1 span { color: var(--gold-light); }
     .hero p { max-width: 620px; color: rgba(255,255,255,0.85); font-size: 1rem; line-height: 1.6; }
 
-    /* TEMPLATES GALLERY */
+    /* TEMPLATE GALLERY */
     .section-head { margin: 40px 0 20px; }
     .section-head h2 { font-size: 1.55rem; font-weight: 800; letter-spacing: -0.02em; color: var(--navy); }
     .section-head p { color: var(--muted); margin-top: 4px; font-size: 0.92rem; }
@@ -123,7 +123,7 @@
     .template-info strong { display: block; font-size: 1.05rem; color: var(--ink); }
     .template-info span { display: block; margin-top: 3px; color: var(--muted); font-size: 0.8rem; font-weight: 600; }
 
-    /* EDITOR */
+    /* EDITOR VIEW */
     .back-btn { background: none; border: none; color: var(--navy); font-weight: 700; font-size: 0.95rem; margin-bottom: 20px; display: inline-flex; align-items: center; gap: 6px; }
     .editor-layout { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(340px, 0.85fr); gap: 28px; align-items: start; }
     .preview-card, .form-card { background: #fff; border: 1px solid var(--line); border-radius: 24px; box-shadow: var(--shadow-sm); }
@@ -216,27 +216,27 @@
           <div class="form-heading">
             <span class="eyebrow">PERSONALIZE</span>
             <h2>Your details</h2>
-            <p>Type below to see your details update on the live poster.</p>
+            <p>Fill out the fields below to display your details on the poster.</p>
           </div>
 
           <label>
             Your Full Name
-            <input id="nameInput" maxlength="36" placeholder="e.g. Aarav Sharma" value="Aarav Sharma">
+            <input id="nameInput" maxlength="36" placeholder="Enter your full name">
           </label>
 
           <label>
             Designation / Class
-            <input id="classInput" maxlength="34" placeholder="e.g. Class X-A / Proud Parent" value="Class X-A">
+            <input id="classInput" maxlength="34" placeholder="e.g. Class X-A, Teacher, or Proud Parent">
           </label>
 
           <label>
             Festival Message
-            <input id="messageInput" maxlength="95" placeholder="Custom festive wish">
+            <input id="messageInput" maxlength="95" placeholder="Enter custom greeting message">
           </label>
 
           <label>
             Phone Number <span class="optional">(optional)</span>
-            <input id="phoneInput" inputmode="tel" maxlength="16" placeholder="e.g. +91 98765 43210" value="+91 98765 43210">
+            <input id="phoneInput" inputmode="tel" maxlength="16" placeholder="e.g. +91 98765 43210">
           </label>
 
           <div class="actions">
@@ -380,7 +380,10 @@
     function openEditor(id) {
       state.template = templates.find(t => t.id === id) || templates[0];
       selectedTitle.textContent = state.template.name;
-      messageInput.value = state.template.message;
+      // Preload placeholder message if field is currently blank
+      if (!messageInput.value.trim()) {
+        messageInput.placeholder = state.template.message;
+      }
       homeView.classList.add("hidden");
       editorView.classList.remove("hidden");
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -400,34 +403,34 @@
       showToast.timer = setTimeout(() => toast.classList.remove("show"), 2500);
     }
 
-    /* --- ADVANCED VECTOR GRAPHIC ENGINES --- */
+    /* --- ARTWORK ENGINE --- */
     function drawArtwork(type, accent, accent2) {
       ctx.save();
       const cx = 540;
       const cy = 720;
 
       if (type === "diwali") {
-        // Gold Mandala Halo
-        ctx.strokeStyle = "rgba(245, 186, 49, 0.18)";
+        // Multi-ring sacred mandala
+        ctx.strokeStyle = "rgba(245, 186, 49, 0.22)";
         ctx.lineWidth = 1.5;
-        for (let i = 0; i < 12; i++) {
+        for (let i = 0; i < 14; i++) {
           ctx.beginPath();
-          ctx.arc(cx, cy, 140 + i * 14, 0, Math.PI * 2);
+          ctx.arc(cx, cy, 130 + i * 13, 0, Math.PI * 2);
           ctx.stroke();
         }
 
-        // Ambient Aura Glow
-        const glow = ctx.createRadialGradient(cx, cy - 20, 15, cx, cy - 20, 340);
-        glow.addColorStop(0, "rgba(255, 205, 55, 0.45)");
+        // Ambient Diya Glow
+        const glow = ctx.createRadialGradient(cx, cy - 20, 20, cx, cy - 20, 360);
+        glow.addColorStop(0, "rgba(255, 205, 55, 0.48)");
         glow.addColorStop(0.5, "rgba(255, 110, 0, 0.18)");
         glow.addColorStop(1, "rgba(0, 0, 0, 0)");
         ctx.fillStyle = glow;
         ctx.beginPath();
-        ctx.arc(cx, cy - 20, 340, 0, Math.PI * 2);
+        ctx.arc(cx, cy - 20, 360, 0, Math.PI * 2);
         ctx.fill();
 
         // 3D Brass Diya Vessel
-        const diyaGrad = ctx.createLinearGradient(cx - 160, cy + 20, cx + 160, cy + 110);
+        const diyaGrad = ctx.createLinearGradient(cx - 160, cy + 20, cx + 160, cy + 120);
         diyaGrad.addColorStop(0, "#ffe57f");
         diyaGrad.addColorStop(0.35, "#d4af37");
         diyaGrad.addColorStop(0.75, "#aa7c11");
@@ -439,12 +442,12 @@
         ctx.quadraticCurveTo(cx, cy + 45, cx - 150, cy);
         ctx.fill();
 
-        // Diya Golden Rim Highlight
+        // Diya Golden Rim
         ctx.strokeStyle = "#fff2a8";
         ctx.lineWidth = 5;
         ctx.stroke();
 
-        // Flame Outer
+        // Sacred Flame
         const flameGrad = ctx.createLinearGradient(cx, cy - 190, cx, cy);
         flameGrad.addColorStop(0, "#ffffff");
         flameGrad.addColorStop(0.18, "#fff275");
@@ -463,37 +466,37 @@
         ctx.ellipse(cx, cy - 55, 18, 42, 0, 0, Math.PI * 2);
         ctx.fill();
 
-        // Floating Golden Sparkles
+        // Floating Gold Embers
         for (let i = 0; i < 50; i++) {
           const sx = (i * 131) % 940 + 70;
           const sy = (i * 87) % 480 + 440;
           ctx.fillStyle = accent;
-          ctx.globalAlpha = (i % 2 === 0) ? 0.8 : 0.35;
+          ctx.globalAlpha = (i % 2 === 0) ? 0.85 : 0.35;
           ctx.beginPath();
           ctx.arc(sx, sy, (i % 3 === 0) ? 3.5 : 2, 0, Math.PI * 2);
           ctx.fill();
         }
       } else if (type === "holi") {
-        // Multi-Color Powder Explosions
+        // Multi-color powder blasts
         const colors = [accent, accent2, "#f43f5e", "#10b981", "#fbbf24", "#a855f7"];
         for (let s = 0; s < 26; s++) {
           const sx = (s * 181) % 880 + 100;
           const sy = (s * 119) % 440 + 470;
-          const rad = (s % 5 + 3) * 20;
+          const rad = (s % 5 + 3) * 22;
           const col = colors[s % colors.length];
           const grad = ctx.createRadialGradient(sx, sy, 4, sx, sy, rad);
           grad.addColorStop(0, col);
           grad.addColorStop(1, "transparent");
           ctx.fillStyle = grad;
-          ctx.globalAlpha = 0.58;
+          ctx.globalAlpha = 0.6;
           ctx.beginPath();
           ctx.arc(sx, sy, rad, 0, Math.PI * 2);
           ctx.fill();
         }
       } else if (type === "patriotic") {
-        // Ashoka Chakra Rays
+        // Ashoka Chakra 24 rays
         const rays = 24;
-        ctx.strokeStyle = "rgba(255, 255, 255, 0.15)";
+        ctx.strokeStyle = "rgba(255, 255, 255, 0.16)";
         ctx.lineWidth = 2.5;
         for (let i = 0; i < rays; i++) {
           const angle = (i * 15 * Math.PI) / 180;
@@ -508,7 +511,7 @@
         ctx.arc(cx, cy, 75, 0, Math.PI * 2);
         ctx.stroke();
       } else {
-        // Stars & Celebratory Sparkles
+        // Starfield & Confetti
         for (let i = 0; i < 55; i++) {
           const bx = (i * 167) % 940 + 70;
           const by = (i * 91) % 480 + 450;
@@ -529,7 +532,7 @@
       ctx.lineWidth = 6;
       ctx.strokeRect(34, 34, 1012, 1282);
 
-      // Inner Delicate Line
+      // Inner Frame
       ctx.strokeStyle = "rgba(255, 255, 255, 0.22)";
       ctx.lineWidth = 1.8;
       ctx.strokeRect(46, 46, 988, 1258);
@@ -547,23 +550,24 @@
 
     function drawPoster() {
       const t = state.template;
-      const name = nameInput.value.trim() || "Aarav Sharma";
-      const classText = classInput.value.trim();
+      // Get exact user input values (with elegant dynamic fallbacks if empty)
+      const name = nameInput.value.trim() || "Your Name";
+      const classText = classInput.value.trim() || "Pinnacle Global School";
       const message = messageInput.value.trim() || t.message;
-      const phone = phoneInput.value.trim();
+      const phone = phoneInput.value.trim() || "";
 
-      // 1. Multi-Stop Studio Gradient Background
+      // 1. Studio Gradient Background
       const grad = ctx.createRadialGradient(540, 420, 80, 540, 675, 820);
       grad.addColorStop(0, t.bg[0]);
       grad.addColorStop(1, t.bg[1]);
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, 1080, 1350);
 
-      // 2. Borders & Occasion Artwork
+      // 2. Borders & Vector Art
       drawFiligreeBorders(t.accent);
       drawArtwork(t.type, t.accent, t.accent2);
 
-      // 3. School Logo (2.5x Size)
+      // 3. School Logo (2.5x Large Size)
       if (state.logo) {
         const logoH = 240;
         const ratio = (state.logo.naturalWidth || state.logo.width) / (state.logo.naturalHeight || state.logo.height);
@@ -571,7 +575,7 @@
         const logoX = (1080 - logoW) / 2;
         const logoY = 65;
 
-        // Radial backlight behind logo
+        // Logo Backlight Glow
         const logoGlow = ctx.createRadialGradient(540, logoY + 120, 20, 540, logoY + 120, 160);
         logoGlow.addColorStop(0, "rgba(255, 255, 255, 0.28)");
         logoGlow.addColorStop(1, "rgba(255, 255, 255, 0)");
@@ -605,25 +609,25 @@
       ctx.font = "500 32px 'Plus Jakarta Sans', sans-serif";
       wrapText(ctx, message, 540, 890, 840, 48);
 
-      // 6. User Personalization Plate (Bottom-Pinned)
-      const hasExtras = Boolean(classText || phone);
-      const plateH = hasExtras ? 210 : 160;
+      // 6. User Personalization Plinth (Bottom-Pinned, all fields render clearly)
+      const hasPhone = Boolean(phone);
+      const plateH = hasPhone ? 210 : 170;
       const plateY = 1316 - plateH - 30;
 
-      ctx.fillStyle = "rgba(255, 255, 255, 0.08)";
+      ctx.fillStyle = "rgba(255, 255, 255, 0.09)";
       ctx.strokeStyle = "rgba(255, 255, 255, 0.22)";
       ctx.lineWidth = 2;
       roundRect(ctx, 80, plateY, 920, plateH, 26, true, true);
 
-      // Warm Wishes Header
+      // "WARM WISHES FROM"
       ctx.fillStyle = t.accent;
       ctx.font = "800 18px 'Plus Jakarta Sans', sans-serif";
       ctx.letterSpacing = "4px";
       ctx.fillText("WARM WISHES FROM", 540, plateY + 44);
       ctx.letterSpacing = "0px";
 
-      // Full Name (Dynamically measured to avoid any truncation)
-      const nameFontSize = fitText(ctx, name, 820, 48, 800, "'Plus Jakarta Sans', sans-serif");
+      // User Full Name (Dynamic scaling ensures long names never overflow)
+      const nameFontSize = fitText(ctx, name, 840, 48, 800, "'Plus Jakarta Sans', sans-serif");
       ctx.fillStyle = "#ffffff";
       ctx.font = `800 ${nameFontSize}px 'Plus Jakarta Sans', sans-serif`;
       ctx.shadowColor = "rgba(0,0,0,0.5)";
@@ -631,26 +635,22 @@
       ctx.fillText(name, 540, plateY + 102);
       ctx.shadowBlur = 0;
 
-      // Designation / Class & Phone Line
-      const subY = plateY + 154;
-      if (classText && phone) {
+      // Class / Designation & Optional Phone Number Line
+      const subY = plateY + 152;
+      if (hasPhone) {
         ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
         ctx.font = "600 23px 'Inter', sans-serif";
         ctx.fillText(`${classText}   •   ${phone}`, 540, subY);
-      } else if (classText) {
+      } else {
         ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
         ctx.font = "600 24px 'Inter', sans-serif";
         ctx.fillText(classText, 540, subY);
-      } else if (phone) {
-        ctx.fillStyle = t.accent;
-        ctx.font = "600 23px 'Inter', sans-serif";
-        ctx.fillText(phone, 540, subY);
       }
     }
 
     function fitText(c, text, maxWidth, startingSize, weight, family) {
       let size = startingSize;
-      while (size > 24) {
+      while (size > 22) {
         c.font = `${weight} ${size}px ${family}`;
         if (c.measureText(text).width <= maxWidth) return size;
         size -= 2;
@@ -746,7 +746,7 @@
     document.getElementById("downloadBtn").addEventListener("click", downloadPoster);
     document.getElementById("shareBtn").addEventListener("click", sharePoster);
 
-    // Live Real-Time Canvas Updates on Keystroke
+    // Live Real-Time Canvas Updates on Every Keystroke
     [nameInput, classInput, messageInput, phoneInput].forEach(el => {
       el.addEventListener("input", drawPoster);
       el.addEventListener("keyup", drawPoster);
@@ -756,7 +756,6 @@
     async function init() {
       renderGallery();
       await loadLogo();
-      // Ensure Google web fonts are ready before first draw so text never disappears
       if (document.fonts) {
         await document.fonts.ready;
       }
