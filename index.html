@@ -4,8 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#071d49">
-  <meta name="description" content="GyanUtsav - Pinnacle Global School Creative Poster Studio">
   <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
   <title>GyanUtsav — Pinnacle Creative Studio</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -49,7 +50,7 @@
       backdrop-filter: blur(14px);
     }
     .brand { display: flex; align-items: center; gap: 14px; }
-    .brand img { width: 52px; height: 52px; object-fit: contain; }
+    .brand img { width: 54px; height: 54px; object-fit: contain; }
     .brand-name { font-weight: 800; font-size: 1.25rem; color: var(--navy); letter-spacing: -0.02em; }
     .brand-subtitle { font-size: 0.75rem; color: var(--muted); font-weight: 600; margin-top: 1px; }
 
@@ -96,7 +97,7 @@
     .hero h1 span { color: var(--gold-light); }
     .hero p { max-width: 620px; color: rgba(255,255,255,0.85); font-size: 1rem; line-height: 1.6; }
 
-    /* TEMPLATE GALLERY */
+    /* TEMPLATES GALLERY */
     .section-head { margin: 40px 0 20px; }
     .section-head h2 { font-size: 1.55rem; font-weight: 800; letter-spacing: -0.02em; color: var(--navy); }
     .section-head p { color: var(--muted); margin-top: 4px; font-size: 0.92rem; }
@@ -117,12 +118,12 @@
     .template-thumb-inner { position: absolute; inset: 0; padding: 22px 16px; display: flex; flex-direction: column; justify-content: space-between; align-items: center; color: white; text-align: center; }
     .template-logo-preview { width: 90px; height: 90px; object-fit: contain; filter: drop-shadow(0 6px 12px rgba(0,0,0,0.5)); }
     .thumb-title { font-family: 'Cinzel', serif; font-size: 1.35rem; font-weight: 800; letter-spacing: 0.05em; text-shadow: 0 3px 12px rgba(0,0,0,0.6); }
-    .thumb-badge { font-size: 0.72rem; font-weight: 700; background: rgba(0,0,0,0.4); padding: 5px 14px; border-radius: 999px; backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,0.15); }
+    .thumb-badge { font-size: 0.72rem; font-weight: 700; background: rgba(0,0,0,0.45); padding: 5px 14px; border-radius: 999px; backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,0.15); }
     .template-info { padding: 14px 6px 4px; }
     .template-info strong { display: block; font-size: 1.05rem; color: var(--ink); }
     .template-info span { display: block; margin-top: 3px; color: var(--muted); font-size: 0.8rem; font-weight: 600; }
 
-    /* EDITOR VIEW */
+    /* EDITOR */
     .back-btn { background: none; border: none; color: var(--navy); font-weight: 700; font-size: 0.95rem; margin-bottom: 20px; display: inline-flex; align-items: center; gap: 6px; }
     .editor-layout { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(340px, 0.85fr); gap: 28px; align-items: start; }
     .preview-card, .form-card { background: #fff; border: 1px solid var(--line); border-radius: 24px; box-shadow: var(--shadow-sm); }
@@ -171,7 +172,7 @@
 
   <header class="topbar">
     <div class="brand">
-      <img src="logo.png" alt="Pinnacle Global School" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2997/2997295.png'">
+      <img src="logo.png" alt="Pinnacle Global School Logo">
       <div>
         <div class="brand-name">GyanUtsav</div>
         <div class="brand-subtitle">Pinnacle Creative Studio</div>
@@ -215,17 +216,17 @@
           <div class="form-heading">
             <span class="eyebrow">PERSONALIZE</span>
             <h2>Your details</h2>
-            <p>Rendered locally on your device for immediate high-resolution export.</p>
+            <p>Type below to see your details update on the live poster.</p>
           </div>
 
           <label>
             Your Full Name
-            <input id="nameInput" maxlength="36" placeholder="e.g. Aarav Sharma">
+            <input id="nameInput" maxlength="36" placeholder="e.g. Aarav Sharma" value="Aarav Sharma">
           </label>
 
           <label>
             Designation / Class
-            <input id="classInput" maxlength="34" placeholder="e.g. Class X-A / Teacher / Proud Parent">
+            <input id="classInput" maxlength="34" placeholder="e.g. Class X-A / Proud Parent" value="Class X-A">
           </label>
 
           <label>
@@ -235,7 +236,7 @@
 
           <label>
             Phone Number <span class="optional">(optional)</span>
-            <input id="phoneInput" inputmode="tel" maxlength="16" placeholder="e.g. +91 98765 43210">
+            <input id="phoneInput" inputmode="tel" maxlength="16" placeholder="e.g. +91 98765 43210" value="+91 98765 43210">
           </label>
 
           <div class="actions">
@@ -264,7 +265,7 @@
         id: "diwali",
         name: "Deepawali",
         category: "Festival of Lights",
-        message: "May the divine light of Diwali bring peace, prosperity, and endless joy to you and your loved ones.",
+        message: "May the divine light of Diwali illuminate your path with supreme joy, good health, and prosperous fortunes.",
         bg: ["#2d0738", "#080112"],
         accent: "#f5ba31",
         accent2: "#ff4500",
@@ -275,7 +276,7 @@
         id: "holi",
         name: "Holi Festival",
         category: "Festival of Colours",
-        message: "Wishing you a life painted with radiant joy, vibrant health, and unforgettable moments.",
+        message: "Wishing you an exhilarating festival flooded with vibrant colors of laughter, harmony, and sweetest joy.",
         bg: ["#3d084d", "#0e021c"],
         accent: "#ff007f",
         accent2: "#00f2fe",
@@ -285,7 +286,7 @@
       {
         id: "independence",
         name: "Independence Day",
-        category: "National Day",
+        category: "National Celebration",
         message: "Saluting the valor, sacrifice, and glorious heritage of our great nation. Proud to be Indian!",
         bg: ["#02231b", "#020f17"],
         accent: "#ff9933",
@@ -296,8 +297,8 @@
       {
         id: "republic",
         name: "Republic Day",
-        category: "National Day",
-        message: "Celebrating justice, liberty, equality, and democratic unity across our motherland. Jai Hind!",
+        category: "National Celebration",
+        message: "Celebrating justice, liberty, equality, and democratic unity across our sovereign motherland. Jai Hind!",
         bg: ["#081d3a", "#020914"],
         accent: "#ff9933",
         accent2: "#2ecc71",
@@ -308,7 +309,7 @@
         id: "teachers",
         name: "Teachers' Day",
         category: "PGS Observance",
-        message: "In deep reverence to the noble mentors who ignite minds, inspire character, and shape tomorrow.",
+        message: "In deep reverence to the mentors who spark curiosity, nurture character, and sculpt a limitless tomorrow.",
         bg: ["#141f36", "#060a12"],
         accent: "#ffd15c",
         accent2: "#38bdf8",
@@ -319,7 +320,7 @@
         id: "newyear",
         name: "New Year Celebration",
         category: "Annual Milestone",
-        message: "Welcoming 365 new days filled with grand success, boundless health, and thrilling achievements.",
+        message: "Welcoming 365 brand new days filled with boundless breakthroughs, radiant health, and soaring achievements.",
         bg: ["#0a192f", "#020c1b"],
         accent: "#00f2fe",
         accent2: "#ffd700",
@@ -349,14 +350,10 @@
     function loadLogo() {
       return new Promise((resolve) => {
         const img = new Image();
-        img.crossOrigin = "anonymous";
         img.onload = () => { state.logo = img; resolve(img); };
         img.onerror = () => {
-          const fallback = new Image();
-          fallback.crossOrigin = "anonymous";
-          fallback.src = "https://cdn-icons-png.flaticon.com/512/2997/2997295.png";
-          fallback.onload = () => { state.logo = fallback; resolve(fallback); };
-          fallback.onerror = () => resolve(null);
+          console.warn("logo.png not found in root directory.");
+          resolve(null);
         };
         img.src = LOGO_SRC;
       });
@@ -367,7 +364,7 @@
         <div class="template-card" onclick="openEditor('${t.id}')">
           <div class="template-thumb" style="background: radial-gradient(circle at 50% 30%, ${t.bg[0]}, ${t.bg[1]})">
             <div class="template-thumb-inner">
-              <img class="template-logo-preview" src="${LOGO_SRC}" alt="PGS" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2997/2997295.png'">
+              <img class="template-logo-preview" src="${LOGO_SRC}" alt="PGS">
               <div class="thumb-title">${t.headline}</div>
               <div class="thumb-badge">${t.category}</div>
             </div>
@@ -403,62 +400,71 @@
       showToast.timer = setTimeout(() => toast.classList.remove("show"), 2500);
     }
 
-    // --- PRO ARTWORK ENGINE ---
+    /* --- ADVANCED VECTOR GRAPHIC ENGINES --- */
     function drawArtwork(type, accent, accent2) {
       ctx.save();
       const cx = 540;
       const cy = 720;
 
       if (type === "diwali") {
-        // 1. Radiant Ambient Glow
-        const glow = ctx.createRadialGradient(cx, cy - 20, 20, cx, cy - 20, 320);
-        glow.addColorStop(0, "rgba(255, 200, 50, 0.45)");
-        glow.addColorStop(0.5, "rgba(255, 100, 0, 0.15)");
+        // Gold Mandala Halo
+        ctx.strokeStyle = "rgba(245, 186, 49, 0.18)";
+        ctx.lineWidth = 1.5;
+        for (let i = 0; i < 12; i++) {
+          ctx.beginPath();
+          ctx.arc(cx, cy, 140 + i * 14, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+
+        // Ambient Aura Glow
+        const glow = ctx.createRadialGradient(cx, cy - 20, 15, cx, cy - 20, 340);
+        glow.addColorStop(0, "rgba(255, 205, 55, 0.45)");
+        glow.addColorStop(0.5, "rgba(255, 110, 0, 0.18)");
         glow.addColorStop(1, "rgba(0, 0, 0, 0)");
         ctx.fillStyle = glow;
         ctx.beginPath();
-        ctx.arc(cx, cy - 20, 320, 0, Math.PI * 2);
+        ctx.arc(cx, cy - 20, 340, 0, Math.PI * 2);
         ctx.fill();
 
-        // 2. Heavy Brass Diya Body
-        const diyaGrad = ctx.createLinearGradient(cx - 150, cy + 20, cx + 150, cy + 100);
+        // 3D Brass Diya Vessel
+        const diyaGrad = ctx.createLinearGradient(cx - 160, cy + 20, cx + 160, cy + 110);
         diyaGrad.addColorStop(0, "#ffe57f");
-        diyaGrad.addColorStop(0.4, "#d4af37");
-        diyaGrad.addColorStop(0.8, "#aa7c11");
-        diyaGrad.addColorStop(1, "#5b3e02");
+        diyaGrad.addColorStop(0.35, "#d4af37");
+        diyaGrad.addColorStop(0.75, "#aa7c11");
+        diyaGrad.addColorStop(1, "#543802");
         ctx.fillStyle = diyaGrad;
         ctx.beginPath();
-        ctx.moveTo(cx - 140, cy);
-        ctx.quadraticCurveTo(cx, cy + 130, cx + 140, cy);
-        ctx.quadraticCurveTo(cx, cy + 40, cx - 140, cy);
+        ctx.moveTo(cx - 150, cy);
+        ctx.quadraticCurveTo(cx, cy + 140, cx + 150, cy);
+        ctx.quadraticCurveTo(cx, cy + 45, cx - 150, cy);
         ctx.fill();
 
-        // Diya Ornate Rim
+        // Diya Golden Rim Highlight
         ctx.strokeStyle = "#fff2a8";
         ctx.lineWidth = 5;
         ctx.stroke();
 
-        // 3. Sacred Teardrop Flame
-        const flameGrad = ctx.createLinearGradient(cx, cy - 170, cx, cy);
+        // Flame Outer
+        const flameGrad = ctx.createLinearGradient(cx, cy - 190, cx, cy);
         flameGrad.addColorStop(0, "#ffffff");
-        flameGrad.addColorStop(0.2, "#fff275");
-        flameGrad.addColorStop(0.65, "#ff5500");
+        flameGrad.addColorStop(0.18, "#fff275");
+        flameGrad.addColorStop(0.6, "#ff5500");
         flameGrad.addColorStop(1, "rgba(255, 20, 0, 0)");
         ctx.fillStyle = flameGrad;
         ctx.beginPath();
-        ctx.moveTo(cx, cy - 170);
-        ctx.bezierCurveTo(cx + 65, cy - 80, cx + 55, cy - 5, cx, cy);
-        ctx.bezierCurveTo(cx - 55, cy - 5, cx - 65, cy - 80, cx, cy - 170);
+        ctx.moveTo(cx, cy - 190);
+        ctx.bezierCurveTo(cx + 70, cy - 90, cx + 60, cy - 5, cx, cy);
+        ctx.bezierCurveTo(cx - 60, cy - 5, cx - 70, cy - 90, cx, cy - 190);
         ctx.fill();
 
-        // Inner White Core
+        // Flame Core
         ctx.fillStyle = "#ffffff";
         ctx.beginPath();
-        ctx.ellipse(cx, cy - 50, 16, 38, 0, 0, Math.PI * 2);
+        ctx.ellipse(cx, cy - 55, 18, 42, 0, 0, Math.PI * 2);
         ctx.fill();
 
-        // 4. Rising Golden Embers
-        for (let i = 0; i < 48; i++) {
+        // Floating Golden Sparkles
+        for (let i = 0; i < 50; i++) {
           const sx = (i * 131) % 940 + 70;
           const sy = (i * 87) % 480 + 440;
           ctx.fillStyle = accent;
@@ -468,32 +474,32 @@
           ctx.fill();
         }
       } else if (type === "holi") {
-        // Multi-layered Color Gulal Splashes
+        // Multi-Color Powder Explosions
         const colors = [accent, accent2, "#f43f5e", "#10b981", "#fbbf24", "#a855f7"];
-        for (let s = 0; s < 22; s++) {
-          const sx = (s * 183) % 860 + 110;
-          const sy = (s * 117) % 420 + 480;
-          const rad = (s % 5 + 3) * 18;
+        for (let s = 0; s < 26; s++) {
+          const sx = (s * 181) % 880 + 100;
+          const sy = (s * 119) % 440 + 470;
+          const rad = (s % 5 + 3) * 20;
           const col = colors[s % colors.length];
           const grad = ctx.createRadialGradient(sx, sy, 4, sx, sy, rad);
           grad.addColorStop(0, col);
           grad.addColorStop(1, "transparent");
           ctx.fillStyle = grad;
-          ctx.globalAlpha = 0.55;
+          ctx.globalAlpha = 0.58;
           ctx.beginPath();
           ctx.arc(sx, sy, rad, 0, Math.PI * 2);
           ctx.fill();
         }
       } else if (type === "patriotic") {
-        // Concentric Ashoka Chakra & Patriotic Aura
+        // Ashoka Chakra Rays
         const rays = 24;
-        ctx.strokeStyle = "rgba(255, 255, 255, 0.12)";
+        ctx.strokeStyle = "rgba(255, 255, 255, 0.15)";
         ctx.lineWidth = 2.5;
         for (let i = 0; i < rays; i++) {
           const angle = (i * 15 * Math.PI) / 180;
           ctx.beginPath();
           ctx.moveTo(cx, cy);
-          ctx.lineTo(cx + Math.cos(angle) * 160, cy + Math.sin(angle) * 160);
+          ctx.lineTo(cx + Math.cos(angle) * 165, cy + Math.sin(angle) * 165);
           ctx.stroke();
         }
         ctx.strokeStyle = "#38bdf8";
@@ -502,8 +508,8 @@
         ctx.arc(cx, cy, 75, 0, Math.PI * 2);
         ctx.stroke();
       } else {
-        // Celebration & Academic Starfield
-        for (let i = 0; i < 50; i++) {
+        // Stars & Celebratory Sparkles
+        for (let i = 0; i < 55; i++) {
           const bx = (i * 167) % 940 + 70;
           const by = (i * 91) % 480 + 450;
           ctx.fillStyle = accent;
@@ -528,7 +534,7 @@
       ctx.lineWidth = 1.8;
       ctx.strokeRect(46, 46, 988, 1258);
 
-      // Corner Medallions
+      // Corner Jewels
       const corners = [[34, 34], [1046, 34], [34, 1316], [1046, 1316]];
       corners.forEach(([cx, cy]) => {
         ctx.fillStyle = accent;
@@ -546,26 +552,26 @@
       const message = messageInput.value.trim() || t.message;
       const phone = phoneInput.value.trim();
 
-      // 1. Deep Canvas Studio Gradient
+      // 1. Multi-Stop Studio Gradient Background
       const grad = ctx.createRadialGradient(540, 420, 80, 540, 675, 820);
       grad.addColorStop(0, t.bg[0]);
       grad.addColorStop(1, t.bg[1]);
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, 1080, 1350);
 
-      // 2. Borders & Graphics
+      // 2. Borders & Occasion Artwork
       drawFiligreeBorders(t.accent);
       drawArtwork(t.type, t.accent, t.accent2);
 
-      // 3. Logo (Expanded to 2.5X scale, centered with golden backing)
+      // 3. School Logo (2.5x Size)
       if (state.logo) {
-        const logoH = 240; // 2.5x larger than original
+        const logoH = 240;
         const ratio = (state.logo.naturalWidth || state.logo.width) / (state.logo.naturalHeight || state.logo.height);
         const logoW = logoH * ratio;
         const logoX = (1080 - logoW) / 2;
-        const logoY = 68;
+        const logoY = 65;
 
-        // Elegant backlight glow behind logo
+        // Radial backlight behind logo
         const logoGlow = ctx.createRadialGradient(540, logoY + 120, 20, 540, logoY + 120, 160);
         logoGlow.addColorStop(0, "rgba(255, 255, 255, 0.28)");
         logoGlow.addColorStop(1, "rgba(255, 255, 255, 0)");
@@ -594,12 +600,12 @@
       ctx.fillStyle = t.accent;
       roundRect(ctx, 420, 436, 240, 5, 3, true, false);
 
-      // 5. Festive Greeting Message
+      // 5. Festival Greeting Message
       ctx.fillStyle = "rgba(255, 255, 255, 0.95)";
       ctx.font = "500 32px 'Plus Jakarta Sans', sans-serif";
       wrapText(ctx, message, 540, 890, 840, 48);
 
-      // 6. User Personalization Plinth (Bottom-pinned)
+      // 6. User Personalization Plate (Bottom-Pinned)
       const hasExtras = Boolean(classText || phone);
       const plateH = hasExtras ? 210 : 160;
       const plateY = 1316 - plateH - 30;
@@ -609,14 +615,14 @@
       ctx.lineWidth = 2;
       roundRect(ctx, 80, plateY, 920, plateH, 26, true, true);
 
-      // "Warm Wishes From"
+      // Warm Wishes Header
       ctx.fillStyle = t.accent;
       ctx.font = "800 18px 'Plus Jakarta Sans', sans-serif";
       ctx.letterSpacing = "4px";
       ctx.fillText("WARM WISHES FROM", 540, plateY + 44);
       ctx.letterSpacing = "0px";
 
-      // Dynamic font size for user name so it never clips
+      // Full Name (Dynamically measured to avoid any truncation)
       const nameFontSize = fitText(ctx, name, 820, 48, 800, "'Plus Jakarta Sans', sans-serif");
       ctx.fillStyle = "#ffffff";
       ctx.font = `800 ${nameFontSize}px 'Plus Jakarta Sans', sans-serif`;
@@ -625,7 +631,7 @@
       ctx.fillText(name, 540, plateY + 102);
       ctx.shadowBlur = 0;
 
-      // Class / Designation & Phone Line
+      // Designation / Class & Phone Line
       const subY = plateY + 154;
       if (classText && phone) {
         ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
@@ -708,7 +714,7 @@
       }, "image/png");
     }
 
-    // PWA Install Handling
+    // PWA Install Prompt
     let deferredPrompt = null;
     const isStandalone = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone;
 
@@ -740,13 +746,20 @@
     document.getElementById("downloadBtn").addEventListener("click", downloadPoster);
     document.getElementById("shareBtn").addEventListener("click", sharePoster);
 
+    // Live Real-Time Canvas Updates on Keystroke
     [nameInput, classInput, messageInput, phoneInput].forEach(el => {
       el.addEventListener("input", drawPoster);
+      el.addEventListener("keyup", drawPoster);
+      el.addEventListener("change", drawPoster);
     });
 
     async function init() {
       renderGallery();
       await loadLogo();
+      // Ensure Google web fonts are ready before first draw so text never disappears
+      if (document.fonts) {
+        await document.fonts.ready;
+      }
       drawPoster();
     }
     init();
