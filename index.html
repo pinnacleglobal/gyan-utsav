@@ -47,7 +47,7 @@
       z-index: 50;
       backdrop-filter: blur(14px);
     }
-    .brand { display: flex; align-items: center; gap: 14px; }
+    .brand { display: flex; align-items: center; gap: 14px; cursor: pointer; }
     .brand img { width: 50px; height: 50px; object-fit: contain; }
     .brand-name { font-weight: 800; font-size: 1.25rem; color: var(--navy); letter-spacing: -0.02em; }
     .brand-subtitle { font-size: 0.75rem; color: var(--muted); font-weight: 600; margin-top: 1px; }
@@ -83,34 +83,37 @@
     .hero h1 span { color: #ffd76a; }
     .hero p { max-width: 620px; color: rgba(255,255,255,0.85); font-size: 1rem; line-height: 1.6; }
 
-    /* GALLERY */
+    /* GALLERIES */
     .section-head { margin-bottom: 22px; }
     .section-head h2 { font-size: 1.55rem; font-weight: 800; color: var(--navy); }
     .section-head p { color: var(--muted); margin-top: 4px; font-size: 0.92rem; }
 
-    .template-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 360px)); gap: 24px; }
-    .template-card {
+    .category-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 420px)); gap: 24px; }
+    .template-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+
+    .card {
       border: 1px solid var(--line);
       background: var(--card);
       border-radius: 22px;
-      padding: 12px;
+      padding: 14px;
       text-align: left;
       box-shadow: var(--shadow-sm);
       cursor: pointer;
       transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     }
-    .template-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-color: #cbd5e1; }
-    .template-thumb {
+    .card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-color: #cbd5e1; }
+    
+    .card-thumb {
       aspect-ratio: 2 / 3;
       border-radius: 16px;
       overflow: hidden;
       background: #090e1a;
       position: relative;
     }
-    .template-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .template-info { padding: 14px 6px 4px; }
-    .template-info strong { display: block; font-size: 1.1rem; color: var(--ink); }
-    .template-info span { display: block; margin-top: 3px; color: var(--muted); font-size: 0.82rem; font-weight: 600; }
+    .card-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .card-info { padding: 14px 6px 4px; }
+    .card-info strong { display: block; font-size: 1.1rem; color: var(--ink); }
+    .card-info span { display: block; margin-top: 3px; color: var(--muted); font-size: 0.82rem; font-weight: 600; }
 
     /* EDITOR LAYOUT */
     .back-btn { background: none; border: none; color: var(--navy); font-weight: 700; font-size: 0.95rem; margin-bottom: 20px; display: inline-flex; align-items: center; gap: 6px; }
@@ -142,12 +145,13 @@
     .toast { position: fixed; left: 50%; bottom: 28px; transform: translate(-50%, 40px); background: #0f172a; color: white; padding: 12px 22px; border-radius: 999px; font-size: 0.85rem; font-weight: 600; opacity: 0; pointer-events: none; transition: all 0.25s ease; z-index: 100; box-shadow: 0 10px 25px rgba(0,0,0,0.25); }
     .toast.show { opacity: 1; transform: translate(-50%, 0); }
 
-    @media (max-width: 860px) {
-      .template-grid { grid-template-columns: 1fr; }
+    @media (max-width: 900px) {
+      .template-grid { grid-template-columns: repeat(2, 1fr); }
       .editor-layout { grid-template-columns: 1fr; }
       .form-card { position: static; }
     }
-    @media (max-width: 540px) {
+    @media (max-width: 600px) {
+      .category-grid, .template-grid { grid-template-columns: 1fr; }
       .actions { grid-template-columns: 1fr; }
       .topbar { min-height: 64px; }
     }
@@ -156,7 +160,7 @@
 <body>
 
   <header class="topbar">
-    <div class="brand">
+    <div class="brand" onclick="showCategoryView()">
       <img src="logo.png" alt="PGS Logo">
       <div>
         <div class="brand-name">GyanUtsav</div>
@@ -167,25 +171,34 @@
   </header>
 
   <main class="container">
-    <!-- HOME / GALLERY VIEW -->
-    <section id="homeView">
+    <section id="categoryView">
       <div class="hero">
         <span class="eyebrow">PINNACLE GLOBAL SCHOOL</span>
         <h1>Create a poster.<br><span>Share the Pinnacle.</span></h1>
-        <p>Choose an occasion below to customize your high-definition greeting poster with your name, class, and contact details.</p>
+        <p>Choose an occasion below to begin customizing your high-definition greeting poster.</p>
       </div>
 
       <div class="section-head">
-        <h2>Choose a Festival / Occasion</h2>
-        <p>Select any design to personalize and export.</p>
+        <h2>Choose a Festival</h2>
+        <p>Select a celebration to view available design options.</p>
+      </div>
+
+      <div id="categoryGrid" class="category-grid"></div>
+    </section>
+
+    <section id="templateView" class="hidden">
+      <button id="backToCategoriesBtn" class="back-btn" type="button">← Back to festivals</button>
+      
+      <div class="section-head">
+        <h2 id="templateHeading">Select a Template</h2>
+        <p>Choose the design template you wish to personalize.</p>
       </div>
 
       <div id="templateGrid" class="template-grid"></div>
     </section>
 
-    <!-- POSTER EDITOR VIEW -->
     <section id="editorView" class="hidden">
-      <button id="backBtn" class="back-btn" type="button">← Back to gallery</button>
+      <button id="backToTemplatesBtn" class="back-btn" type="button">← Back to templates</button>
 
       <div class="editor-layout">
         <div class="preview-card">
@@ -226,7 +239,7 @@
             <button id="shareBtn" class="btn-action secondary" type="button">↗ Share</button>
           </div>
 
-          <button id="newBtn" class="text-btn" type="button">Choose a different design</button>
+          <button id="changeTemplateBtn" class="text-btn" type="button">Choose a different template</button>
         </div>
       </div>
     </section>
@@ -239,49 +252,109 @@
   <div id="toast" class="toast"></div>
 
   <script>
-    // Templates stored inside your templates/ folder
-    const templates = [
-      {
-        id: "diwali",
-        name: "Happy Diwali",
-        category: "Festival of Lights",
-        file: "templates/diwali.png"
+    // Festival definitions with their 3 template variations
+    const festivalData = {
+      diwali: {
+        name: "Diwali",
+        subtitle: "Festival of Lights",
+        preview: "templates/diwali1.png",
+        templates: [
+          { id: "diwali-1", name: "Diwali Design 1", file: "templates/diwali1.png" },
+          { id: "diwali-2", name: "Diwali Design 2", file: "templates/diwali2.png" },
+          { id: "diwali-3", name: "Diwali Design 3", file: "templates/diwali3.png" }
+        ]
       },
-      {
-        id: "dussehra",
-        name: "Vijayadashami / Dussehra",
-        category: "Festival of Victory",
-        file: "templates/dussehra.png"
+      dussehra: {
+        name: "Dussehra",
+        subtitle: "Vijayadashami / Festival of Victory",
+        preview: "templates/dussehra1.png",
+        templates: [
+          { id: "dussehra-1", name: "Dussehra Design 1", file: "templates/dussehra1.png" },
+          { id: "dussehra-2", name: "Dussehra Design 2", file: "templates/dussehra2.png" },
+          { id: "dussehra-3", name: "Dussehra Design 3", file: "templates/dussehra3.png" }
+        ]
       }
-    ];
+    };
 
-    let currentTemplate = templates[0];
+    let currentFestivalKey = null;
+    let currentTemplate = null;
     let currentBgImg = null;
 
-    const homeView = document.getElementById("homeView");
+    // View references
+    const categoryView = document.getElementById("categoryView");
+    const templateView = document.getElementById("templateView");
     const editorView = document.getElementById("editorView");
+
+    // Container references
+    const categoryGrid = document.getElementById("categoryGrid");
     const templateGrid = document.getElementById("templateGrid");
+    const templateHeading = document.getElementById("templateHeading");
+
+    // Canvas references
     const canvas = document.getElementById("posterCanvas");
     const ctx = canvas.getContext("2d");
     const selectedTitle = document.getElementById("selectedTitle");
+
+    // Form inputs
     const nameInput = document.getElementById("nameInput");
     const classInput = document.getElementById("classInput");
     const phoneInput = document.getElementById("phoneInput");
     const toast = document.getElementById("toast");
     const installBtn = document.getElementById("installBtn");
 
-    function renderGallery() {
-      templateGrid.innerHTML = templates.map(t => `
-        <div class="template-card" onclick="selectTemplate('${t.id}')">
-          <div class="template-thumb">
-            <img src="${t.file}" alt="${t.name}">
+    function renderCategories() {
+      categoryGrid.innerHTML = Object.entries(festivalData).map(([key, item]) => `
+        <div class="card" onclick="selectCategory('${key}')">
+          <div class="card-thumb">
+            <img src="${item.preview}" alt="${item.name}">
           </div>
-          <div class="template-info">
-            <strong>${t.name}</strong>
-            <span>${t.category}</span>
+          <div class="card-info">
+            <strong>${item.name}</strong>
+            <span>${item.subtitle} • 3 Designs</span>
           </div>
         </div>
       `).join("");
+    }
+
+    function selectCategory(key) {
+      currentFestivalKey = key;
+      const festival = festivalData[key];
+      
+      templateHeading.textContent = `${festival.name} Templates`;
+      templateGrid.innerHTML = festival.templates.map(t => `
+        <div class="card" onclick="selectTemplate('${t.id}')">
+          <div class="card-thumb">
+            <img src="${t.file}" alt="${t.name}">
+          </div>
+          <div class="card-info">
+            <strong>${t.name}</strong>
+            <span>Click to personalize</span>
+          </div>
+        </div>
+      `).join("");
+
+      categoryView.classList.add("hidden");
+      templateView.classList.remove("hidden");
+      editorView.classList.add("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function showCategoryView() {
+      categoryView.classList.remove("hidden");
+      templateView.classList.add("hidden");
+      editorView.classList.add("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function showTemplateView() {
+      if (!currentFestivalKey) {
+        showCategoryView();
+        return;
+      }
+      categoryView.classList.add("hidden");
+      templateView.classList.remove("hidden");
+      editorView.classList.add("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     function loadImage(src) {
@@ -293,22 +366,17 @@
       });
     }
 
-    async function selectTemplate(id) {
-      currentTemplate = templates.find(t => t.id === id) || templates[0];
-      selectedTitle.textContent = `${currentTemplate.name} Poster`;
+    async function selectTemplate(templateId) {
+      const festival = festivalData[currentFestivalKey];
+      currentTemplate = festival.templates.find(t => t.id === templateId);
+      selectedTitle.textContent = `${currentTemplate.name}`;
       
-      homeView.classList.add("hidden");
+      templateView.classList.add("hidden");
       editorView.classList.remove("hidden");
       window.scrollTo({ top: 0, behavior: "smooth" });
 
       currentBgImg = await loadImage(currentTemplate.file);
       drawPoster();
-    }
-
-    function showHome() {
-      editorView.classList.add("hidden");
-      homeView.classList.remove("hidden");
-      window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     function showToast(msg) {
@@ -319,7 +387,6 @@
     }
 
     function drawPoster() {
-      // 1. Draw HD Background image from templates folder
       if (currentBgImg) {
         ctx.drawImage(currentBgImg, 0, 0, 1080, 1620);
       } else {
@@ -327,28 +394,23 @@
         ctx.fillRect(0, 0, 1080, 1620);
       }
 
-      // 2. Read User Input
       const name = nameInput.value.trim();
       const userClass = classInput.value.trim();
       const phone = phoneInput.value.trim();
-
-      // Center coordinate of the bottom badge
       const cx = 540;
+
       ctx.textAlign = "center";
 
-      // 3. Header phrase
       ctx.fillStyle = "#8a581e";
       ctx.font = "800 20px 'Plus Jakarta Sans', sans-serif";
       ctx.letterSpacing = "3px";
       ctx.fillText("WARM WISHES FROM", cx, 1408);
       ctx.letterSpacing = "0px";
 
-      // 4. Full Name
       ctx.fillStyle = "#1e0f04";
       ctx.font = "800 44px 'Plus Jakarta Sans', sans-serif";
       ctx.fillText(name || "Your Name", cx, 1458);
 
-      // 5. Class / Designation & Phone
       if (userClass && phone) {
         ctx.fillStyle = "#4a3520";
         ctx.font = "600 24px 'Plus Jakarta Sans', sans-serif";
@@ -369,6 +431,7 @@
     }
 
     function downloadPoster() {
+      if (!currentTemplate) return;
       const link = document.createElement("a");
       const cleanName = (nameInput.value.trim() || currentTemplate.id).replace(/[^a-z0-9]/gi, "_");
       link.download = `Pinnacle-${currentTemplate.id}-${cleanName}.png`;
@@ -378,6 +441,7 @@
     }
 
     async function sharePoster() {
+      if (!currentTemplate) return;
       if (!navigator.share) {
         downloadPoster();
         return;
@@ -387,7 +451,7 @@
           const file = new File([blob], `Pinnacle-${currentTemplate.id}.png`, { type: "image/png" });
           await navigator.share({
             title: `${currentTemplate.name} — Pinnacle Global School`,
-            text: `Warm wishes on ${currentTemplate.name}!`,
+            text: `Warm wishes from Pinnacle Global School!`,
             files: [file]
           });
         } catch (err) {
@@ -396,7 +460,7 @@
       }, "image/png");
     }
 
-    // PWA Install Event
+    // PWA Support
     let deferredPrompt = null;
     const isStandalone = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone;
 
@@ -423,8 +487,10 @@
       showToast("GyanUtsav installed!");
     });
 
-    document.getElementById("backBtn").addEventListener("click", showHome);
-    document.getElementById("newBtn").addEventListener("click", showHome);
+    // Navigation listeners
+    document.getElementById("backToCategoriesBtn").addEventListener("click", showCategoryView);
+    document.getElementById("backToTemplatesBtn").addEventListener("click", showTemplateView);
+    document.getElementById("changeTemplateBtn").addEventListener("click", showTemplateView);
     document.getElementById("downloadBtn").addEventListener("click", downloadPoster);
     document.getElementById("shareBtn").addEventListener("click", sharePoster);
 
@@ -436,7 +502,7 @@
     });
 
     async function init() {
-      renderGallery();
+      renderCategories();
       if (document.fonts) {
         await document.fonts.ready;
       }
