@@ -109,8 +109,23 @@
       overflow: hidden;
       background: #090e1a;
       position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .card-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .card-fallback {
+      display: none;
+      width: 100%;
+      height: 100%;
+      padding: 20px;
+      color: #ffd76a;
+      font-weight: 700;
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #0d2c68, #23083e);
+    }
     .card-info { padding: 14px 6px 4px; }
     .card-info strong { display: block; font-size: 1.1rem; color: var(--ink); }
     .card-info span { display: block; margin-top: 3px; color: var(--muted); font-size: 0.82rem; font-weight: 600; }
@@ -160,8 +175,8 @@
 <body>
 
   <header class="topbar">
-    <div class="brand" onclick="showCategoryView()">
-      <img src="logo.png" alt="PGS Logo">
+    <div class="brand" id="brandHomeBtn">
+      <img src="logo.png" alt="PGS Logo" onerror="this.style.display='none'">
       <div>
         <div class="brand-name">GyanUtsav</div>
         <div class="brand-subtitle">Pinnacle Creative Studio</div>
@@ -175,12 +190,12 @@
       <div class="hero">
         <span class="eyebrow">PINNACLE GLOBAL SCHOOL</span>
         <h1>Create a poster.<br><span>Share the Pinnacle.</span></h1>
-        <p>Choose an occasion below to begin customizing your high-definition greeting poster.</p>
+        <p>Choose an occasion below to customize your high-definition greeting poster.</p>
       </div>
 
       <div class="section-head">
         <h2>Choose a Festival</h2>
-        <p>Select a celebration to view available design options.</p>
+        <p>Select a festival to explore its available templates.</p>
       </div>
 
       <div id="categoryGrid" class="category-grid"></div>
@@ -191,7 +206,7 @@
       
       <div class="section-head">
         <h2 id="templateHeading">Select a Template</h2>
-        <p>Choose the design template you wish to personalize.</p>
+        <p>Pick one of the three designs below to personalize.</p>
       </div>
 
       <div id="templateGrid" class="template-grid"></div>
@@ -216,7 +231,7 @@
           <div class="form-heading">
             <span class="eyebrow">PERSONALIZE</span>
             <h2>Your details</h2>
-            <p>Fill out the fields below. Watch your details appear on the bottom badge in real time.</p>
+            <p>Fill out the fields below. Watch your details render in real time.</p>
           </div>
 
           <label>
@@ -252,16 +267,17 @@
   <div id="toast" class="toast"></div>
 
   <script>
-    // Festival definitions with their 3 template variations
+    // Theme setup: 'light' theme uses dark text for light/yellow badges.
+    // 'dark' theme uses white/gold text for dark blue/navy badges.
     const festivalData = {
       diwali: {
         name: "Diwali",
         subtitle: "Festival of Lights",
         preview: "templates/diwali1.png",
         templates: [
-          { id: "diwali-1", name: "Diwali Design 1", file: "templates/diwali1.png" },
-          { id: "diwali-2", name: "Diwali Design 2", file: "templates/diwali2.png" },
-          { id: "diwali-3", name: "Diwali Design 3", file: "templates/diwali3.png" }
+          { id: "diwali-1", name: "Diwali Design 1", file: "templates/diwali1.png", theme: "light" },
+          { id: "diwali-2", name: "Diwali Design 2", file: "templates/diwali2.png", theme: "light" },
+          { id: "diwali-3", name: "Diwali Design 3", file: "templates/diwali3.png", theme: "light" }
         ]
       },
       dussehra: {
@@ -269,9 +285,9 @@
         subtitle: "Vijayadashami / Festival of Victory",
         preview: "templates/dussehra1.png",
         templates: [
-          { id: "dussehra-1", name: "Dussehra Design 1", file: "templates/dussehra1.png" },
-          { id: "dussehra-2", name: "Dussehra Design 2", file: "templates/dussehra2.png" },
-          { id: "dussehra-3", name: "Dussehra Design 3", file: "templates/dussehra3.png" }
+          { id: "dussehra-1", name: "Dussehra Design 1", file: "templates/dussehra1.png", theme: "dark" },  // Dark blue badge
+          { id: "dussehra-2", name: "Dussehra Design 2", file: "templates/dussehra2.png", theme: "light" }, // Yellow badge
+          { id: "dussehra-3", name: "Dussehra Design 3", file: "templates/dussehra3.png", theme: "dark" }   // Dark blue badge
         ]
       }
     };
@@ -280,33 +296,31 @@
     let currentTemplate = null;
     let currentBgImg = null;
 
-    // View references
     const categoryView = document.getElementById("categoryView");
     const templateView = document.getElementById("templateView");
     const editorView = document.getElementById("editorView");
 
-    // Container references
     const categoryGrid = document.getElementById("categoryGrid");
     const templateGrid = document.getElementById("templateGrid");
     const templateHeading = document.getElementById("templateHeading");
 
-    // Canvas references
     const canvas = document.getElementById("posterCanvas");
     const ctx = canvas.getContext("2d");
     const selectedTitle = document.getElementById("selectedTitle");
 
-    // Form inputs
     const nameInput = document.getElementById("nameInput");
     const classInput = document.getElementById("classInput");
     const phoneInput = document.getElementById("phoneInput");
     const toast = document.getElementById("toast");
     const installBtn = document.getElementById("installBtn");
 
+    // RENDER FUNCTIONS
     function renderCategories() {
       categoryGrid.innerHTML = Object.entries(festivalData).map(([key, item]) => `
-        <div class="card" onclick="selectCategory('${key}')">
+        <div class="card" onclick="navigateToCategory('${key}')">
           <div class="card-thumb">
-            <img src="${item.preview}" alt="${item.name}">
+            <img src="${item.preview}" alt="${item.name}" onerror="handleImgError(this, '${item.name}')">
+            <div class="card-fallback">${item.name}</div>
           </div>
           <div class="card-info">
             <strong>${item.name}</strong>
@@ -316,15 +330,14 @@
       `).join("");
     }
 
-    function selectCategory(key) {
-      currentFestivalKey = key;
+    function renderTemplates(key) {
       const festival = festivalData[key];
-      
       templateHeading.textContent = `${festival.name} Templates`;
       templateGrid.innerHTML = festival.templates.map(t => `
-        <div class="card" onclick="selectTemplate('${t.id}')">
+        <div class="card" onclick="navigateToEditor('${t.id}')">
           <div class="card-thumb">
-            <img src="${t.file}" alt="${t.name}">
+            <img src="${t.file}" alt="${t.name}" onerror="handleImgError(this, '${t.name}')">
+            <div class="card-fallback">${t.name}</div>
           </div>
           <div class="card-info">
             <strong>${t.name}</strong>
@@ -332,51 +345,74 @@
           </div>
         </div>
       `).join("");
-
-      categoryView.classList.add("hidden");
-      templateView.classList.remove("hidden");
-      editorView.classList.add("hidden");
-      window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    function showCategoryView() {
-      categoryView.classList.remove("hidden");
-      templateView.classList.add("hidden");
-      editorView.classList.add("hidden");
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-
-    function showTemplateView() {
-      if (!currentFestivalKey) {
-        showCategoryView();
-        return;
+    function handleImgError(imgEl, title) {
+      imgEl.style.display = "none";
+      const fallback = imgEl.parentElement.querySelector(".card-fallback");
+      if (fallback) {
+        fallback.style.display = "flex";
       }
-      categoryView.classList.add("hidden");
-      templateView.classList.remove("hidden");
-      editorView.classList.add("hidden");
+    }
+
+    // STATE AND HARDWARE BACK BUTTON NAVIGATION
+    function applyViewState(state) {
+      if (!state || state.view === "categories") {
+        categoryView.classList.remove("hidden");
+        templateView.classList.add("hidden");
+        editorView.classList.add("hidden");
+      } else if (state.view === "templates") {
+        currentFestivalKey = state.festivalKey;
+        renderTemplates(currentFestivalKey);
+        categoryView.classList.add("hidden");
+        templateView.classList.remove("hidden");
+        editorView.classList.add("hidden");
+      } else if (state.view === "editor") {
+        currentFestivalKey = state.festivalKey;
+        const festival = festivalData[currentFestivalKey];
+        currentTemplate = festival.templates.find(t => t.id === state.templateId) || festival.templates[0];
+        
+        categoryView.classList.add("hidden");
+        templateView.classList.add("hidden");
+        editorView.classList.remove("hidden");
+        
+        selectedTitle.textContent = `${currentTemplate.name}`;
+        loadImage(currentTemplate.file).then(img => {
+          currentBgImg = img;
+          drawPoster();
+        });
+      }
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
+
+    function navigateToCategory(key) {
+      history.pushState({ view: "templates", festivalKey: key }, "", `#${key}`);
+      applyViewState({ view: "templates", festivalKey: key });
+    }
+
+    function navigateToEditor(templateId) {
+      history.pushState({ view: "editor", festivalKey: currentFestivalKey, templateId: templateId }, "", `#${templateId}`);
+      applyViewState({ view: "editor", festivalKey: currentFestivalKey, templateId: templateId });
+    }
+
+    window.addEventListener("popstate", (event) => {
+      if (event.state) {
+        applyViewState(event.state);
+      } else {
+        applyViewState({ view: "categories" });
+      }
+    });
 
     function loadImage(src) {
       return new Promise((resolve) => {
         const img = new Image();
         img.onload = () => resolve(img);
-        img.onerror = () => resolve(null);
+        img.onerror = () => {
+          console.warn("Could not load image: " + src);
+          resolve(null);
+        };
         img.src = src;
       });
-    }
-
-    async function selectTemplate(templateId) {
-      const festival = festivalData[currentFestivalKey];
-      currentTemplate = festival.templates.find(t => t.id === templateId);
-      selectedTitle.textContent = `${currentTemplate.name}`;
-      
-      templateView.classList.add("hidden");
-      editorView.classList.remove("hidden");
-      window.scrollTo({ top: 0, behavior: "smooth" });
-
-      currentBgImg = await loadImage(currentTemplate.file);
-      drawPoster();
     }
 
     function showToast(msg) {
@@ -387,10 +423,11 @@
     }
 
     function drawPoster() {
+      // Background Image / Fallback
       if (currentBgImg) {
         ctx.drawImage(currentBgImg, 0, 0, 1080, 1620);
       } else {
-        ctx.fillStyle = "#1c062c";
+        ctx.fillStyle = "#0c2b69";
         ctx.fillRect(0, 0, 1080, 1620);
       }
 
@@ -398,33 +435,43 @@
       const userClass = classInput.value.trim();
       const phone = phoneInput.value.trim();
       const cx = 540;
-
       ctx.textAlign = "center";
 
-      ctx.fillStyle = "#8a581e";
+      // Choose color theme based on template
+      const isDarkTheme = currentTemplate && currentTemplate.theme === "dark";
+      
+      const subHeaderColor = isDarkTheme ? "#ffd76a" : "#8a581e";
+      const nameColor = isDarkTheme ? "#ffffff" : "#1e0f04";
+      const detailColor = isDarkTheme ? "#e2e8f0" : "#4a3520";
+      const schoolColor = isDarkTheme ? "#f3b51b" : "#704818";
+
+      // 1. Greeting eyebrow
+      ctx.fillStyle = subHeaderColor;
       ctx.font = "800 20px 'Plus Jakarta Sans', sans-serif";
       ctx.letterSpacing = "3px";
       ctx.fillText("WARM WISHES FROM", cx, 1408);
       ctx.letterSpacing = "0px";
 
-      ctx.fillStyle = "#1e0f04";
+      // 2. Name
+      ctx.fillStyle = nameColor;
       ctx.font = "800 44px 'Plus Jakarta Sans', sans-serif";
       ctx.fillText(name || "Your Name", cx, 1458);
 
+      // 3. Details
       if (userClass && phone) {
-        ctx.fillStyle = "#4a3520";
+        ctx.fillStyle = detailColor;
         ctx.font = "600 24px 'Plus Jakarta Sans', sans-serif";
         ctx.fillText(`${userClass}   •   ${phone}`, cx, 1504);
       } else if (userClass) {
-        ctx.fillStyle = "#4a3520";
+        ctx.fillStyle = detailColor;
         ctx.font = "600 26px 'Plus Jakarta Sans', sans-serif";
         ctx.fillText(userClass, cx, 1504);
       } else if (phone) {
-        ctx.fillStyle = "#704818";
+        ctx.fillStyle = detailColor;
         ctx.font = "600 24px 'Inter', sans-serif";
         ctx.fillText(phone, cx, 1504);
       } else {
-        ctx.fillStyle = "#704818";
+        ctx.fillStyle = schoolColor;
         ctx.font = "600 22px 'Plus Jakarta Sans', sans-serif";
         ctx.fillText("Pinnacle Global School", cx, 1504);
       }
@@ -451,7 +498,7 @@
           const file = new File([blob], `Pinnacle-${currentTemplate.id}.png`, { type: "image/png" });
           await navigator.share({
             title: `${currentTemplate.name} — Pinnacle Global School`,
-            text: `Warm wishes from Pinnacle Global School!`,
+            text: `Warm wishes on ${currentTemplate.name}!`,
             files: [file]
           });
         } catch (err) {
@@ -487,14 +534,18 @@
       showToast("GyanUtsav installed!");
     });
 
-    // Navigation listeners
-    document.getElementById("backToCategoriesBtn").addEventListener("click", showCategoryView);
-    document.getElementById("backToTemplatesBtn").addEventListener("click", showTemplateView);
-    document.getElementById("changeTemplateBtn").addEventListener("click", showTemplateView);
+    // Button actions trigger history back to sync with mobile back button
+    document.getElementById("backToCategoriesBtn").addEventListener("click", () => history.back());
+    document.getElementById("backToTemplatesBtn").addEventListener("click", () => history.back());
+    document.getElementById("changeTemplateBtn").addEventListener("click", () => history.back());
+    document.getElementById("brandHomeBtn").addEventListener("click", () => {
+      history.pushState({ view: "categories" }, "", "#");
+      applyViewState({ view: "categories" });
+    });
+
     document.getElementById("downloadBtn").addEventListener("click", downloadPoster);
     document.getElementById("shareBtn").addEventListener("click", sharePoster);
 
-    // Live typing listeners
     [nameInput, classInput, phoneInput].forEach(el => {
       el.addEventListener("input", drawPoster);
       el.addEventListener("keyup", drawPoster);
@@ -502,6 +553,8 @@
     });
 
     async function init() {
+      // Replace state on start so root view is saved in navigation history
+      history.replaceState({ view: "categories" }, "", "#");
       renderCategories();
       if (document.fonts) {
         await document.fonts.ready;
