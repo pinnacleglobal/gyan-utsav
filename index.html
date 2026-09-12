@@ -88,7 +88,7 @@
     .section-head h2 { font-size: 1.55rem; font-weight: 800; color: var(--navy); }
     .section-head p { color: var(--muted); margin-top: 4px; font-size: 0.92rem; }
 
-    .category-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 420px)); gap: 24px; }
+    .category-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
     .template-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
 
     .card {
@@ -160,8 +160,8 @@
     .toast { position: fixed; left: 50%; bottom: 28px; transform: translate(-50%, 40px); background: #0f172a; color: white; padding: 12px 22px; border-radius: 999px; font-size: 0.85rem; font-weight: 600; opacity: 0; pointer-events: none; transition: all 0.25s ease; z-index: 100; box-shadow: 0 10px 25px rgba(0,0,0,0.25); }
     .toast.show { opacity: 1; transform: translate(-50%, 0); }
 
-    @media (max-width: 900px) {
-      .template-grid { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 960px) {
+      .category-grid, .template-grid { grid-template-columns: repeat(2, 1fr); }
       .editor-layout { grid-template-columns: 1fr; }
       .form-card { position: static; }
     }
@@ -194,15 +194,15 @@
       </div>
 
       <div class="section-head">
-        <h2>Choose a Festival</h2>
-        <p>Select a festival to explore its available templates.</p>
+        <h2>Choose an Occasion</h2>
+        <p>Select a festival or event to explore its available templates.</p>
       </div>
 
       <div id="categoryGrid" class="category-grid"></div>
     </section>
 
     <section id="templateView" class="hidden">
-      <button id="backToCategoriesBtn" class="back-btn" type="button">← Back to festivals</button>
+      <button id="backToCategoriesBtn" class="back-btn" type="button">← Back to occasions</button>
       
       <div class="section-head">
         <h2 id="templateHeading">Select a Template</h2>
@@ -267,8 +267,6 @@
   <div id="toast" class="toast"></div>
 
   <script>
-    // Theme setup: 'light' theme uses dark text for light/yellow badges.
-    // 'dark' theme uses white/gold text for dark blue/navy badges.
     const festivalData = {
       diwali: {
         name: "Diwali",
@@ -285,9 +283,49 @@
         subtitle: "Vijayadashami / Festival of Victory",
         preview: "templates/dussehra1.png",
         templates: [
-          { id: "dussehra-1", name: "Dussehra Design 1", file: "templates/dussehra1.png", theme: "dark" },  // Dark blue badge
-          { id: "dussehra-2", name: "Dussehra Design 2", file: "templates/dussehra2.png", theme: "light" }, // Yellow badge
-          { id: "dussehra-3", name: "Dussehra Design 3", file: "templates/dussehra3.png", theme: "dark" }   // Dark blue badge
+          { id: "dussehra-1", name: "Dussehra Design 1", file: "templates/dussehra1.png", theme: "dark" },
+          { id: "dussehra-2", name: "Dussehra Design 2", file: "templates/dussehra2.png", theme: "light" },
+          { id: "dussehra-3", name: "Dussehra Design 3", file: "templates/dussehra3.png", theme: "dark" }
+        ]
+      },
+      holi: {
+        name: "Holi",
+        subtitle: "Festival of Colours",
+        preview: "templates/Holi 1.png",
+        templates: [
+          { id: "holi-1", name: "Holi Design 1", file: "templates/Holi 1.png", theme: "light" },
+          { id: "holi-2", name: "Holi Design 2", file: "templates/Holi 2.png", theme: "light" },
+          { id: "holi-3", name: "Holi Design 3", file: "templates/Holi 3.png", theme: "light" }
+        ]
+      },
+      republic: {
+        name: "Republic Day",
+        subtitle: "National Celebration",
+        preview: "templates/Republic Day 1.png",
+        templates: [
+          { id: "republic-1", name: "Republic Day Design 1", file: "templates/Republic Day 1.png", theme: "light" },
+          { id: "republic-2", name: "Republic Day Design 2", file: "templates/Republic Day 2.png", theme: "light" },
+          { id: "republic-3", name: "Republic Day Design 3", file: "templates/Republic Day 3.png", theme: "light" }
+        ]
+      },
+      birthday: {
+        name: "Birthday",
+        subtitle: "Special Celebrations",
+        preview: "templates/Birthday 1.png",
+        templates: [
+          { id: "birthday-1", name: "Birthday Design 1", file: "templates/Birthday 1.png", theme: "light" },
+          { id: "birthday-2", name: "Birthday Design 2", file: "templates/Birthday 2.png", theme: "light" },
+          { id: "birthday-3", name: "Birthday Design 3", file: "templates/Birthday 3.png", theme: "light" }
+        ]
+      },
+      childrenday: {
+        name: "Children's Day",
+        subtitle: "Celebrating Childhood",
+        preview: "templates/Children Day 1.png",
+        templates: [
+          { id: "childrenday-1", name: "Children's Day Design 1", file: "templates/Children Day 1.png", theme: "light" },
+          { id: "childrenday-2", name: "Children's Day Design 2", file: "templates/Children Day 2.png", theme: "light" },
+          { id: "childrenday-3", name: "Children's Day Design 3", file: "templates/Children Day 3.png", theme: "light" }
         ]
       }
     };
@@ -314,12 +352,11 @@
     const toast = document.getElementById("toast");
     const installBtn = document.getElementById("installBtn");
 
-    // RENDER FUNCTIONS
     function renderCategories() {
       categoryGrid.innerHTML = Object.entries(festivalData).map(([key, item]) => `
         <div class="card" onclick="navigateToCategory('${key}')">
           <div class="card-thumb">
-            <img src="${item.preview}" alt="${item.name}" onerror="handleImgError(this, '${item.name}')">
+            <img src="${encodeURI(item.preview)}" alt="${item.name}" onerror="handleImgError(this, '${item.name}')">
             <div class="card-fallback">${item.name}</div>
           </div>
           <div class="card-info">
@@ -336,7 +373,7 @@
       templateGrid.innerHTML = festival.templates.map(t => `
         <div class="card" onclick="navigateToEditor('${t.id}')">
           <div class="card-thumb">
-            <img src="${t.file}" alt="${t.name}" onerror="handleImgError(this, '${t.name}')">
+            <img src="${encodeURI(t.file)}" alt="${t.name}" onerror="handleImgError(this, '${t.name}')">
             <div class="card-fallback">${t.name}</div>
           </div>
           <div class="card-info">
@@ -355,7 +392,6 @@
       }
     }
 
-    // STATE AND HARDWARE BACK BUTTON NAVIGATION
     function applyViewState(state) {
       if (!state || state.view === "categories") {
         categoryView.classList.remove("hidden");
@@ -411,7 +447,7 @@
           console.warn("Could not load image: " + src);
           resolve(null);
         };
-        img.src = src;
+        img.src = encodeURI(src);
       });
     }
 
@@ -423,7 +459,6 @@
     }
 
     function drawPoster() {
-      // Background Image / Fallback
       if (currentBgImg) {
         ctx.drawImage(currentBgImg, 0, 0, 1080, 1620);
       } else {
@@ -437,7 +472,6 @@
       const cx = 540;
       ctx.textAlign = "center";
 
-      // Choose color theme based on template
       const isDarkTheme = currentTemplate && currentTemplate.theme === "dark";
       
       const subHeaderColor = isDarkTheme ? "#ffd76a" : "#8a581e";
@@ -534,7 +568,6 @@
       showToast("GyanUtsav installed!");
     });
 
-    // Button actions trigger history back to sync with mobile back button
     document.getElementById("backToCategoriesBtn").addEventListener("click", () => history.back());
     document.getElementById("backToTemplatesBtn").addEventListener("click", () => history.back());
     document.getElementById("changeTemplateBtn").addEventListener("click", () => history.back());
@@ -553,7 +586,6 @@
     });
 
     async function init() {
-      // Replace state on start so root view is saved in navigation history
       history.replaceState({ view: "categories" }, "", "#");
       renderCategories();
       if (document.fonts) {
